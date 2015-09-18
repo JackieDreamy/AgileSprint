@@ -24,6 +24,7 @@ public class ParserUtils {
     private SimpleDBUtils simpleDBUtils;
     private PersonEntity personEntity;
     private FamilyEntity familyEntity;
+    private OutputUtils outputUtils;
 
     /**
      * Read GED from file.
@@ -36,12 +37,15 @@ public class ParserUtils {
             tagsUtils = new TagsUtils();
             gedReader = new BufferedReader(new FileReader(filePath));
             simpleDBUtils = new SimpleDBUtils();
+            outputUtils = new OutputUtils();
             String line = gedReader.readLine();
             while (line != null) {
                 parseTag(line);
                 line = gedReader.readLine();
             }
             gedReader.close();
+            outputUtils.outputPerson(simpleDBUtils);
+            outputUtils.outputFamily(simpleDBUtils);
         } catch (FileNotFoundException fnfe) {
             ErrorUtils.pathError(fnfe, filePath);
         } catch (IOException ioe) {
