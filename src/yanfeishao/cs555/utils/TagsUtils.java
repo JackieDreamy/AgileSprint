@@ -1,37 +1,40 @@
 package yanfeishao.cs555.utils;
 
+import lombok.Data;
+import yanfeishao.cs555.constant.KeywordsConstant;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by JackieDreamy on 2015.
+ * Created by Yanfei Shao on 2015.
  */
+@Data
 public class TagsUtils {
 
     private Set<String> tagSets;
 
+    /**
+     * Instantiates a new Tags utils.
+     */
     public TagsUtils() {
         tagSets = new HashSet<>();
-        tagSets.add("INDI");
-        tagSets.add("NAME");
-        tagSets.add("SEX");
-        tagSets.add("BIRT");
-        tagSets.add("DEAT");
-        tagSets.add("FAMC");
-        tagSets.add("FAMS");
-        tagSets.add("FAM");
-        tagSets.add("MARR");
-        tagSets.add("HUSB");
-        tagSets.add("WIFE");
-        tagSets.add("CHIL");
-        tagSets.add("DIV");
-        tagSets.add("DATE");
-        tagSets.add("HEAD");
-        tagSets.add("TRLR");
-        tagSets.add("NOTE");
-    }
-
-    public Set<String> getTagSets() {
-        return tagSets;
+        tagSets.add(KeywordsConstant.INDI);
+        tagSets.add(KeywordsConstant.NAME);
+        tagSets.add(KeywordsConstant.SEX);
+        tagSets.add(KeywordsConstant.BIRT);
+        tagSets.add(KeywordsConstant.DEAT);
+        tagSets.add(KeywordsConstant.FAMC);
+        tagSets.add(KeywordsConstant.FAMS);
+        tagSets.add(KeywordsConstant.FAM);
+        tagSets.add(KeywordsConstant.MARR);
+        tagSets.add(KeywordsConstant.HUSB);
+        tagSets.add(KeywordsConstant.WIFE);
+        tagSets.add(KeywordsConstant.CHIL);
+        tagSets.add(KeywordsConstant.DIV);
+        tagSets.add(KeywordsConstant.DATE);
+        tagSets.add(KeywordsConstant.HEAD);
+        tagSets.add(KeywordsConstant.TRLR);
+        tagSets.add(KeywordsConstant.NOTE);
     }
 }
