@@ -7,7 +7,7 @@ import yanfeishao.cs555.utils.ParserUtils;
  */
 public class Main {
 
-    private static final String FILE_PATH = "/Users/YanfeiShao/GitHub/AgileSprint/AgileSprint/out/data.ged";
+    private static final String FILE_PATH = "src/yanfeishao/cs555/data/data.ged";
 
     /**
      * The entry point of application.
