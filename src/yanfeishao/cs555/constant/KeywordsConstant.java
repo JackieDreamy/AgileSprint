@@ -84,4 +84,8 @@ public class KeywordsConstant {
      * The constant WIFE_NAME.
      */
     public static final String WIFE_NAME = "WIFE_NAME";
+    /**
+     * The constant ERROR.
+     */
+    public static final String ERROR = "ERROR";
 }

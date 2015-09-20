@@ -20,4 +20,16 @@ public class FormatterRegex {
      * The constant FAMILY_TABLE_DATA.
      */
     public static final String FAMILY_TABLE_DATA = "%-18s%-23s%s";
+    /**
+     * The constant ERROR_TITLE.
+     */
+    public static final String ERROR_TITLE = "%s %s: ";
+    /**
+     * The constant ERROR_FAMILY.
+     */
+    public static final String ERROR_FAMILY = "ERROR FAMILY ID %s\n ERROR Reason %s";
+    /**
+     * The constant ERROR_PERSON.
+     */
+    public static final String ERROR_PERSON = "ERROR PERSON ID %s\n ERROR Reason %s";
 }

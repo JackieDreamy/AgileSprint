@@ -1,5 +1,6 @@
 package yanfeishao.cs555.utils;
 
+import yanfeishao.cs555.constant.ErrorCode;
 import yanfeishao.cs555.constant.FormatterRegex;
 import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
@@ -19,8 +20,11 @@ public class OutputUtils {
      * Read all of the data of GEDCOM file
      * print the unique identifiers and names of the husbands and wives, in order by unique family identifiers and names
      * of each of the individuals in order by their unique identifiers.
-     * @param simpleDBUtils the simple DB utils
-     * @param prefix the output prefix
+     *
+     * @param simpleDBUtils
+     *         the simple DB utils
+     * @param prefix
+     *         the output prefix
      */
     public void outputResult(SimpleDBUtils simpleDBUtils, String prefix) {
         switch (prefix) {
@@ -40,6 +44,69 @@ public class OutputUtils {
             break;
         }
         System.out.println();
+    }
+
+    /**
+     * Read all of the data of GEDCOM file
+     * print the error information based on the US case description
+     *
+     * @param simpleDBUtils
+     *         the simple DB utils
+     * @param prefix
+     *         the output prefix
+     */
+    public void outputError(SimpleDBUtils simpleDBUtils, String prefix) {
+        System.out.println(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, prefix));
+        switch (prefix) {
+            case ErrorCode.US01:
+                break;
+            case ErrorCode.US02:
+                break;
+            case ErrorCode.US03:
+                break;
+            case ErrorCode.US04:
+                break;
+            case ErrorCode.US05:
+                break;
+            case ErrorCode.US06:
+                break;
+            case ErrorCode.US08:
+                break;
+            case ErrorCode.US09:
+                break;
+            case ErrorCode.US10:
+                break;
+            case ErrorCode.US12:
+                break;
+            case ErrorCode.US16:
+                break;
+            case ErrorCode.US21:
+                break;
+            case ErrorCode.US22:
+                break;
+            case ErrorCode.US25:
+                break;
+            case ErrorCode.US29:
+                break;
+            case ErrorCode.US30:
+                break;
+            case ErrorCode.US31:
+                break;
+            case ErrorCode.US33:
+                break;
+            case ErrorCode.US35:
+                break;
+            case ErrorCode.US36:
+                break;
+            case ErrorCode.US38:
+                break;
+            case ErrorCode.US39:
+                break;
+            case ErrorCode.US40:
+                break;
+            case ErrorCode.US42:
+                break;
+        }
     }
 
     private List<FamilyEntity> getFamilyDB(SimpleDBUtils simpleDBUtils) {
