@@ -27,7 +27,7 @@ public enum ParseEnum {
     /**
      * The PERSON_PREFIX.
      */
-    PERSON_PREFIX("@I"),
+    PERSON_PREFIX("@P"),
     /**
      * The PERSON_NAME_SPLIT.
      */

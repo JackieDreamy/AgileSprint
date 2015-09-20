@@ -140,7 +140,11 @@ public class ParserUtils {
                     personEntity.setIdentifier(lineArray[1]);
                     break;
                 case KeywordsConstant.NAME:
-                    personEntity.setName(lineArray[2] + lineArray[3]);
+                    StringBuffer nameBuffer = new StringBuffer();
+                    for (int index = 2; index < lineArray.length; index++) {
+                        nameBuffer.append(lineArray[index]);
+                    }
+                    personEntity.setName(nameBuffer.toString());
                     break;
                 case KeywordsConstant.SEX:
                     personEntity.setSex(lineArray[2]);

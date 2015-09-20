@@ -31,7 +31,11 @@ public class OutputUtils {
             case KeywordsConstant.INDI: {
                 System.out.println(String.format(FormatterRegex.PERSON_TABLE_TITLE, KeywordsConstant.IDENTIFIER, KeywordsConstant.NAME));
                 for (PersonEntity personEntity : getPersonDB(simpleDBUtils)) {
-                    System.out.println(String.format(FormatterRegex.PERSON_TABLE_DATA, personEntity.getIdentifier(), personEntity.getName()));
+                    try {
+                        System.out.println(String.format(FormatterRegex.PERSON_TABLE_DATA, personEntity.getIdentifier(), personEntity.getName()));
+                    } catch (NullPointerException npe) {
+                        continue;
+                    }
                 }
             }
             break;
@@ -107,6 +111,7 @@ public class OutputUtils {
             case ErrorCode.US42:
                 break;
         }
+        System.out.println();
     }
 
     private List<FamilyEntity> getFamilyDB(SimpleDBUtils simpleDBUtils) {

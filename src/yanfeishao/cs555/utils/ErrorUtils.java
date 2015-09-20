@@ -1,6 +1,9 @@
 package yanfeishao.cs555.utils;
 
+import yanfeishao.cs555.constant.ErrorCode;
 import yanfeishao.cs555.constant.ErrorInfo;
+import yanfeishao.cs555.constant.FormatterRegex;
+import yanfeishao.cs555.constant.KeywordsConstant;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,6 +32,7 @@ public class ErrorUtils {
      *         the current date
      */
     public static void parseError(StringBuffer currentDate) {
+        System.out.println(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US42));
         String message = String.format(ErrorInfo.PARSE_ERROR, currentDate.toString());
         System.out.println(message);
     }
