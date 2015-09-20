@@ -1,171 +1,378 @@
-0 NOTE Yanfei Shao
+0 NOTE JackieDreamy/AgileSprint
 0 HEAD
-1 SOUR Family Echo
-2 WWW http://www.familyecho.com/
-1 FILE My Family
-1 DATE 7 SEP 2015
-1 DEST ANSTFILE
-1 GEDC
-2 VERS 5.5.1
-2 FORM LINEAGE-LINKED
-1 SUBM @I1@
-2 NAME David Jackie
-1 SUBN
 1 CHAR UTF-8
-0 @I1@ INDI
-1 NAME David /Jackie/
-2 GIVN David
-2 SURN Jackie
-2 _MARNM Jackie
+1 SOUR Ancestry.com Family Trees
+2 VERS (2010.3)
+2 NAME Ancestry.com Family Trees
+2 CORP Ancestry.com
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @P1@ INDI 
+1 NAME Edwin William /Hague/
 1 SEX M
-1 BIRT
-2 DATE 10 JAN 1990
-1 FAMC @F1@
-0 @I2@ INDI
-1 NAME Tonny /Jackie/
-2 GIVN Tonny
-2 SURN Jackie
-2 _MARNM Jackie
-1 SEX M
-1 BIRT
-2 DATE 7 MAR 1959
-1 FAMS @F1@
+1 BIRT 
+2 DATE 21 JAN 1933
+1 DEAT 
+2 DATE 21 JUL 2001
+2 PLAC Passaic County, New Jersey, USA
 1 FAMC @F2@
-0 @I3@ INDI
-1 NAME Bunny /Li/
-2 GIVN Bunny
-2 SURN Li
-2 _MARNM Jackie
-1 SEX F
-1 BIRT
-2 DATE 20 DEC 1959
-2 PLAC New York
-1 OCCU Banker
-2 PLAC Bank
 1 FAMS @F1@
-1 FAMC @F3@
-0 @I4@ INDI
-1 NAME Vincient /Li/
-2 GIVN Vincient
-2 SURN Li
-2 _MARNM Jackie
+0 @P2@ INDI 
+1 NAME Edwin Burton /Hague/
 1 SEX M
-1 BIRT
-2 DATE 23 JUL 1933
-1 FAMS @F3@
-0 @I5@ INDI
-1 NAME Lala /Li/
-2 GIVN Lala
-2 SURN Li
-2 _MARNM Jackie
-1 SEX F
-1 BIRT
-2 DATE 14 MAR 1933
-1 DEAT Y
-2 DATE 13 OCT 2011
-1 FAMS @F3@
-0 @I6@ INDI
-1 NAME Bill /Jackie/
-2 GIVN Bill
-2 SURN Jackie
-2 _MARNM Jackie
-1 SEX M
-1 BIRT
-2 DATE 27 JUN 1932
-1 FAMS @F2@
-0 @I7@ INDI
-1 NAME Xin /Yang/
-2 GIVN Xin
-2 SURN Yang
-2 _MARNM Jackie
-1 SEX F
-1 BIRT
-2 DATE 10 JUN 1935
-1 FAMS @F2@
-0 @I8@ INDI
-1 NAME Bill /Jackie/
-2 GIVN Bill
-2 SURN Jackie
-2 _MARNM Li
-1 SEX F
-1 BIRT
-2 DATE 14 FEB 1990
-1 FAMS @F4@
-1 FAMS @F5@
-1 FAMC @F1@
-0 @I9@ INDI
-1 NAME Coco /Li/
-2 GIVN Coco
-2 SURN Li
-2 _MARNM Li
-1 SEX M
-1 BIRT
-2 DATE 19 FEB 1991
-1 DEAT Y
-2 DATE 5 SEP 2015
-1 FAMS @F4@
-0 @I10@ INDI
-1 NAME Chill /Bill/
-2 GIVN Chill
-2 SURN Bill
-2 _MARNM Bill
-1 SEX M
-1 BIRT
-2 DATE 14 MAY 1992
-1 DEAT Y
-2 DATE 13 NOV 2013
-1 FAMS @F5@
-0 @I11@ INDI
-1 NAME Chill /Li/
-2 GIVN Chill
-2 SURN Li
-2 _MARNM Li
-1 SEX M
-1 BIRT
-2 DATE 5 MAY 2015
+1 BIRT 
+2 DATE 29 NOV 1906
+2 PLAC Pittston, Luzerne, Pennsylvania, USA
+1 DEAT 
+2 DATE 12 APR 1973
+2 PLAC Port Charlotte, Charlotte, Florida, USA
 1 FAMC @F4@
-0 @F1@ FAM
-1 HUSB @I2@
-1 WIFE @I3@
-1 CHIL @I1@
-1 CHIL @I8@
-1 MARR
-2 DATE 15 AUG 1987
-2 PLAC New York
-1 _CURRENT Y
-0 @F2@ FAM
-1 HUSB @I6@
-1 WIFE @I7@
-1 CHIL @I2@
-1 MARR
-2 DATE 9 AUG 1957
+1 FAMS @F2@
+1 FAMS @F3@
+0 @P3@ INDI 
+1 BIRT 
+2 DATE 22 JUL 1919
 2 PLAC New Jersey
-1 _CURRENT Y
-0 @F3@ FAM
-1 HUSB @I4@
-1 WIFE @I5@
-1 CHIL @I3@
-1 MARR
-2 DATE 5 JUL 1958
-2 PLAC Seattle
-1 _CURRENT Y
-0 @F4@ FAM
-1 HUSB @I9@
-1 WIFE @I8@
-1 CHIL @I11@
-1 MARR
-2 DATE 8 FEB 2014
+1 DEAT 
+2 DATE 21 MAR 1998
+2 PLAC New Jersey, USA
+1 NAME Verna May /Youngster/
+1 SEX F
+1 FAMC @F5@
+1 FAMS @F2@
+1 FAMS @F6@
+0 @P4@ INDI 
+1 NAME Lorraine /Hoffmann/
+1 SEX F
+1 BIRT 
+2 DATE 21 JAN 1935
+1 FAMS @F1@
+0 @P5@ INDI 
+1 SEX F
+1 BIRT 
+2 DATE 22 SEP 1875
+2 PLAC Wayne, Passaic, New Jersey, USA
+1 DEAT 
+2 DATE 20 SEP 1921
+2 PLAC Paterson, New Jersey, USA
+1 NAME William Henry /Hague/
+1 FAMS @F4@
+0 @P6@ INDI 
+1 NAME Ursula /Braddock/
+1 SEX F
+1 BIRT 
+2 DATE 11 AUG 1886
+2 PLAC Paterson, Passaic County, New Jersey, USA
+1 DEAT 
+2 DATE 2 FEB 1965
+2 PLAC New Jersey, USA
+1 FAMS @F4@
+1 FAMS @F8@
+0 @P7@ INDI 
+1 NAME Maude Ann /Apjohn/
+1 SEX F
+1 BIRT 
+2 DATE 28 JAN 1919
+2 PLAC Haskell, New Jersey
+1 DEAT 
+2 DATE 10 JUL 2000
+2 PLAC Punta Gorda, Charlotte, Florida, USA
+1 FAMS @F3@
+0 @P8@ INDI 
+1 NAME Peter C. /Youngster/
+1 SEX M
+1 BIRT 
+2 DATE 19 JUN 1874
+2 PLAC Paterson, Passaic, New Jersey
+1 DEAT 
+2 DATE 3 AUG 1955
+2 PLAC Paterson, Passaic, New Jersey, United States
+1 FAMS @F5@
+0 @P9@ INDI 
+1 NAME Elizabeth /Van Haste/
+1 SEX F
+1 BIRT 
+2 DATE 10 SEP 1880
+2 PLAC Paterson, Passaic, New Jersey
+1 DEAT 
+2 DATE 11 APR 1963
+1 FAMS @F5@
+0 @P10@ INDI 
+1 DEAT 
+2 DATE JUL 1901
+2 PLAC Fair Lawn, Bergen, New Jersey, USA
+1 NAME Walter W /Kramer/
+1 SEX M
+1 BIRT 
+2 DATE 8 MAR 1902
+2 PLAC New Jersey
+1 FAMS @F6@
+0 @P11@ INDI 
+1 NAME Linda Verne /Kramer/
+1 SEX F
+1 BIRT 
+2 DATE 8 AUG 1943
+1 DEAT 
+2 DATE 1972
+1 FAMC @F6@
+0 @P12@ INDI 
+1 DEAT 
+2 DATE 19 JUL 2019
+2 PLAC Paterson, Passaic County, New Jersey
+1 NAME Edwin Burton /Hague/
+1 SEX M
+1 BIRT 
+2 DATE APR 1905
+2 PLAC Paterson, Passaic County, New Jersey
+1 FAMC @F4@
+1 FAMS @F7@
+0 @P13@ INDI 
+1 NAME Harry /Cook/
+1 SEX M
+1 BIRT 
+2 DATE ABT 1896
+2 PLAC New Jersey
+1 FAMS @F8@
+0 @P14@ INDI 
+1 DEAT 
+2 DATE 5 Feb 1997
+2 PLAC Florida, USA
+1 BIRT 
+2 DATE 15 Oct 1924
+1 SEX F
+1 NAME Jillian /Cook/
+1 FAMC @F8@
+1 FAMS @F12@
+0 @P15@ INDI 
+1 DEAT 
+2 DATE 17 May 1947
+1 NAME John /Cook/
+1 SEX M
+1 BIRT 
+2 DATE 26 Dec 1922
+2 PLAC Paterson, New Jersey, USA
+1 FAMC @F8@
+1 FAMS @F9@
+0 @P16@ INDI 
+1 BIRT 
+2 DATE 4 JUN 1970
+2 PLAC New Jersey
+1 DEAT 
+2 DATE 29 DEC 1966
+2 PLAC West Sayville NY
+1 NAME Inez /Youngster/
+1 SEX F
+1 FAMC @F5@
+1 FAMS @F11@
+0 @P17@ INDI 
+1 NAME Wesley /Youngster/
+1 SEX M
+1 BIRT 
+2 DATE 18 DEC 1907
+2 PLAC New Jersey
+1 DEAT 
+2 DATE JUN 1978
+2 PLAC Wayne, Passaic, New Jersey, USA
+1 FAMC @F5@
+0 @P18@ INDI 
+1 DEAT 
+2 DATE 16 Mar 1947
+1 SEX M
+1 NAME Barbara /Fritschi/
+1 BIRT 
+2 DATE 25 Dec 1915
+1 FAMS @F7@
+0 @P19@ INDI 
+1 NAME John /Elsaesser/
+1 SEX M
+1 BIRT 
+2 DATE 29 Oct 1992
+1 FAMC @F12@
+0 @P20@ INDI 
+1 BIRT 
+2 DATE 30 May 1989
+1 SEX F
+1 NAME Elisabeth /Elsasser/
+1 FAMC @F12@
+0 @P21@ INDI 
+1 BIRT 
+2 DATE 23 Apr 1921
+1 SEX M
+1 NAME Jakob /Elsasser/
+1 FAMS @F12@
+0 @P15@ INDI 
+1 NAME Darlene /Cook/
+1 SEX F
+1 BIRT 
+2 DATE 18 Oct 1998
+1 FAMC @F9@
+0 @P23@ INDI 
+1 SEX F
+1 NAME Silvia /Green/
+1 DEAT 
+2 DATE 23 Sep 2001
+2 PLAC Ridgewood, Bergen, New Jersey, USA
+1 BIRT 
+2 DATE 4 Apr 1928
+2 PLAC Paterson, New Jersey, USA
+1 FAMS @F9@
+0 @P24@ INDI 
+1 DEAT 
+2 DATE 19 Mar 1974
+2 PLAC Vietnam
+1 NAME John /Cook/ Jr
+1 SEX M
+1 BIRT 
+2 DATE 8  Feb 1952
+2 PLAC Fair Lawn, Bergen County, New Jersey, USA
+1 FAMC @F9@
+0 @P25@ INDI 
+1 NAME Edward Morris /Ockers/
+1 SEX M
+1 BIRT 
+2 DATE 26 NOV 1903
+2 PLAC West Sayville NY
+1 DEAT 
+2 DATE 22 APR 1990
+2 PLAC West Sayville, Suffolk, New York, United States of America
+1 FAMS @F11@
+0 @P26@ INDI 
+1 DEAT 
+2 DATE 13 Aug 2017
+1 NAME Elizabeth /Ockers/
+1 SEX F
+1 BIRT 
+2 DATE 23 FEB 1937
 2 PLAC New York
-1 EVEN
-2 TYPE Ending
-1 _CURRENT N
-0 @F5@ FAM
-1 HUSB @I10@
-1 WIFE @I8@
-1 MARR
-2 DATE 3 APR 2013
-2 PLAC New York
-1 DIV
-2 DATE 13 NOV 2013
-1 _CURRENT N
+1 FAMC @F11@
+1 FAMS @F10@
+0 @P27@ INDI 
+1 NAME Edward Lowell /Ockers/
+1 SEX M
+1 BIRT 
+2 DATE 12 DEC 1933
+2 PLAC West Sayville
+1 DEAT 
+2 DATE 13 JUN 2012
+1 FAMC @F11@
+0 @P28@ INDI 
+1 NAME Kenneth Arvid /Lindfors/
+1 SEX M
+1 BIRT 
+2 DATE 20 MAY 1935
+2 PLAC Bronx, Bronx, New York, USA
+1 DEAT 
+2 DATE 10 DEC 1995
+2 PLAC West Sayville, Suffolk, New York, USA
+1 FAMS @F10@
+0 @F1@ FAM 
+1 HUSB @P1@
+1 WIFE @P4@
+1 MARR 
+2 DATE 4 OCT 1958
+2 PLAC Fair Lawn, Bergen County, New Jersey, USA
+0 @F2@ FAM 
+1 HUSB @P2@
+1 WIFE @P3@
+1 CHIL @P1@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR 
+2 DATE 12 Jun 1933
+2 PLAC Elkton, Cecil, Maryland, USA
+0 @F3@ FAM 
+1 HUSB @P2@
+1 WIFE @P7@
+0 @F4@ FAM 
+1 HUSB @P5@
+1 WIFE @P6@
+1 CHIL @P12@
+2 _FREL Natural
+2 _MREL Unknown
+1 CHIL @P2@
+2 _FREL Natural
+2 _MREL Natural
+0 @F5@ FAM 
+1 HUSB @P8@
+1 WIFE @P9@
+1 CHIL @P17@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @P3@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @P16@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR 
+2 DATE 27 NOV 1901
+0 @F6@ FAM 
+1 HUSB @P10@
+1 WIFE @P3@
+1 CHIL @P11@
+2 _FREL Unknown
+2 _MREL Natural
+1 MARR 
+2 DATE 14 Aug 1940
+0 @F7@ FAM 
+1 HUSB @P12@
+1 WIFE @P18@
+1 DIV 
+2 DATE 20 Sep 1972
+1 MARR 
+2 DATE 22 Nov 1924
+0 @F8@ FAM 
+1 HUSB @P13@
+1 WIFE @P6@
+1 CHIL @P15@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @P14@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR 
+2 DATE 20 Jun 1922
+1 DIV 
+2 DATE 15 Mar 1921
+0 @F9@ FAM 
+1 HUSB @P15@
+1 WIFE @P23@
+1 CHIL @P24@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @P22@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR 
+2 DATE 10 Jun 1953
+2 PLAC St Thomas County, Virgin Islands (US), USA
+0 @F10@ FAM 
+1 HUSB @P28@
+1 WIFE @P26@
+1 DIV 
+2 DATE 9 May 2001
+1 MARR 
+2 DATE 6 Nov 1997
+0 @F11@ FAM 
+1 HUSB @P25@
+1 WIFE @P16@
+1 CHIL @P27@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @P26@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR 
+2 DATE 25 DEC 1928
+2 PLAC Manhattan, New York, USA
+0 @F12@ FAM 
+1 HUSB @P21@
+1 WIFE @P14@
+1 CHIL @P20@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @P19@
+2 _FREL Natural
+2 _MREL Natural
 0 TRLR
