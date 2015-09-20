@@ -1,5 +1,7 @@
 package yanfeishao.cs555.utils;
 
+import yanfeishao.cs555.constant.ErrorInfo;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -15,7 +17,7 @@ public class ErrorUtils {
      *         the IOException
      */
     public static void readGEDError(IOException ioe) {
-        String message = String.format("cannot read line from ged");
+        String message = String.format(ErrorInfo.READ_ERROR);
         System.out.println(message);
         throw new RuntimeException(message, ioe);
     }
@@ -27,7 +29,7 @@ public class ErrorUtils {
      *         the current date
      */
     public static void parseError(StringBuffer currentDate) {
-        String message = String.format("%s is not a valid date format", currentDate.toString());
+        String message = String.format(ErrorInfo.PARSE_ERROR, currentDate.toString());
         System.out.println(message);
     }
 
@@ -40,7 +42,7 @@ public class ErrorUtils {
      *         the file path
      */
     public static void pathError(FileNotFoundException fnfe, String filePath) {
-        String message = String.format("%s path is wrong, please check the path whether is correct", filePath);
+        String message = String.format(ErrorInfo.PATH_ERROR, filePath);
         System.out.println(message);
         throw new RuntimeException(message, fnfe);
     }

@@ -100,4 +100,16 @@ public class ErrorInfo {
      * The constant US42.
      */
     public static final String US42 = "All dates should be legitimate dates for the months specified (e.g., 2/30/2015 is not legitimate)";
+    /**
+     * The constant READ_ERROR.
+     */
+    public static final String READ_ERROR = "cannot read line from ged";
+    /**
+     * The constant PARSE_ERROR.
+     */
+    public static final String PARSE_ERROR = "%s is not a valid date format";
+    /**
+     * The constant PATH_ERROR.
+     */
+    public static final String PATH_ERROR = "%s path is wrong, please check the path whether is correct";
 }

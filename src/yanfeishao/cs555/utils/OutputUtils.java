@@ -125,4 +125,8 @@ public class OutputUtils {
         return personEntities;
     }
 
+    private String[] splitName(String name) {
+        String[] splitResult = name.split(ParseEnum.PERSON_NAME_SPLIT.toString());
+        return splitResult;
+    }
 }

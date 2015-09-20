@@ -27,14 +27,19 @@ public enum ParseEnum {
     /**
      * The PERSON_PREFIX.
      */
-    PERSON_PREFIX("@I");
+    PERSON_PREFIX("@I"),
+    /**
+     * The PERSON_NAME_SPLIT.
+     */
+    PERSON_NAME_SPLIT("/");
 
     private String parseTag;
 
     /**
      * Instantiates a new Parse enum.
      *
-     * @param parseTag the parse tag
+     * @param parseTag
+     *         the parse tag
      */
     ParseEnum(String parseTag) {
         this.parseTag = parseTag;
