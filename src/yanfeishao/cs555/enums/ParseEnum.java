@@ -15,15 +15,26 @@ public enum ParseEnum {
     /**
      * The DATE_FORMAT.
      */
-    DATE_FORMAT("dd-MMM-yyyy");
+    DATE_FORMAT("dd-MMM-yyyy"),
+    /**
+     * The PREFIX.
+     */
+    PREFIX("@"),
+    /**
+     * The FAMILY_PREFIX.
+     */
+    FAMILY_PREFIX("@F"),
+    /**
+     * The PERSON_PREFIX.
+     */
+    PERSON_PREFIX("@I");
 
     private String parseTag;
 
     /**
      * Instantiates a new Parse enum.
      *
-     * @param parseTag
-     *         the parse tag
+     * @param parseTag the parse tag
      */
     ParseEnum(String parseTag) {
         this.parseTag = parseTag;
