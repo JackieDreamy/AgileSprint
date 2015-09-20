@@ -72,4 +72,16 @@ public class KeywordsConstant {
      * The constant NOTE.
      */
     public static final String NOTE = "NOTE";
+    /**
+     * The constant IDENTIFIER.
+     */
+    public static final String IDENTIFIER = "IDENTIFIER";
+    /**
+     * The constant HUSBAND_NAME.
+     */
+    public static final String HUSBAND_NAME = "HUSBAND_NAME";
+    /**
+     * The constant WIFE_NAME.
+     */
+    public static final String WIFE_NAME = "WIFE_NAME";
 }
