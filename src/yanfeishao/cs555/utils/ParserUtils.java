@@ -32,7 +32,7 @@ public class ParserUtils {
      * @param filePath          the file path
      * @return the string builder
      */
-    public void readGEDCOM(String filePath) {
+    public SimpleDBUtils readGEDCOM(String filePath) {
         try {
             tagsUtils = new TagsUtils();
             gedReader = new BufferedReader(new FileReader(filePath));
@@ -46,10 +46,13 @@ public class ParserUtils {
             gedReader.close();
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
+            return simpleDBUtils;
         } catch (FileNotFoundException fnfe) {
             ErrorUtils.pathError(fnfe, filePath);
+            return null;
         } catch (IOException ioe) {
             ErrorUtils.readGEDError(ioe);
+            return null;
         }
     }
 
