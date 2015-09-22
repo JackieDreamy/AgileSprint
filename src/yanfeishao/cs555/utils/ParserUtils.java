@@ -29,8 +29,8 @@ public class ParserUtils {
     /**
      * Read GED from file.
      *
-     * @param filePath          the file path
-     * @return the string builder
+     * @param filePath the file path
+     * @return Simple NoSQL DB
      */
     public SimpleDBUtils readGEDCOM(String filePath) {
         try {
