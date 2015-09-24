@@ -1,5 +1,6 @@
 package yanfeishao.cs555.utils;
 
+import yanfeishao.cs555.constant.ErrorCode;
 import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.entities.PersonEntity;
@@ -29,7 +30,9 @@ public class ParserUtils {
     /**
      * Read GED from file.
      *
-     * @param filePath the file path
+     * @param filePath
+     *         the file path
+     *
      * @return Simple NoSQL DB
      */
     public SimpleDBUtils readGEDCOM(String filePath) {
@@ -46,6 +49,8 @@ public class ParserUtils {
             gedReader.close();
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
+            outputUtils.outputError(simpleDBUtils, ErrorCode.US02);
+            outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
             return simpleDBUtils;
         } catch (FileNotFoundException fnfe) {
             ErrorUtils.pathError(fnfe, filePath);
