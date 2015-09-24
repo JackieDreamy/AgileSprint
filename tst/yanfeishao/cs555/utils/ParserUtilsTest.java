@@ -23,7 +23,8 @@ public class ParserUtilsTest extends TestCases {
     @Test
     public void parserReadHappyCase() {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
-        Assert.assertEquals(PERSON_EXPECTED_SIZE, getPersonDB(simpleDBUtils).size());
-        Assert.assertEquals(FAMILY_EXPECTED_SIZE, getFamilyDB(simpleDBUtils).size());
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertEquals(PERSON_EXPECTED_SIZE, simpleDBUtils.getPersonDBList().size());
+        Assert.assertEquals(FAMILY_EXPECTED_SIZE, simpleDBUtils.getFamilyDBList().size());
     }
 }

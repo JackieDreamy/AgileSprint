@@ -1,14 +1,16 @@
 package yanfeishao.cs555.utils;
 
 import yanfeishao.cs555.constant.ErrorCode;
+import yanfeishao.cs555.constant.ErrorInfo;
 import yanfeishao.cs555.constant.FormatterRegex;
 import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.entities.PersonEntity;
 import yanfeishao.cs555.enums.ParseEnum;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Xiaonan Zhang on 9/18/15.
@@ -30,7 +32,7 @@ public class OutputUtils {
         switch (prefix) {
             case KeywordsConstant.INDI: {
                 System.out.println(String.format(FormatterRegex.PERSON_TABLE_TITLE, KeywordsConstant.IDENTIFIER, KeywordsConstant.NAME));
-                for (PersonEntity personEntity : getPersonDB(simpleDBUtils)) {
+                for (PersonEntity personEntity : simpleDBUtils.getPersonDBList()) {
                     try {
                         System.out.println(String.format(FormatterRegex.PERSON_TABLE_DATA, personEntity.getIdentifier(), personEntity.getName()));
                     } catch (NullPointerException npe) {
@@ -41,7 +43,7 @@ public class OutputUtils {
             break;
             case KeywordsConstant.FAM: {
                 System.out.println(String.format(FormatterRegex.FAMILY_TABLE_TITLE, KeywordsConstant.IDENTIFIER, KeywordsConstant.HUSBAND_NAME, KeywordsConstant.WIFE_NAME));
-                for (FamilyEntity familyEntity : getFamilyDB(simpleDBUtils)) {
+                for (FamilyEntity familyEntity : simpleDBUtils.getFamilyDBList()) {
                     System.out.println(String.format(FormatterRegex.FAMILY_TABLE_DATA, familyEntity.getIdentifier(), familyEntity.getFather().getName(), familyEntity.getMother().getName()));
                 }
             }
@@ -61,73 +63,62 @@ public class OutputUtils {
      */
     public void outputError(SimpleDBUtils simpleDBUtils, String prefix) {
         System.out.println(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, prefix));
+        Set<String> results = parseError(simpleDBUtils, prefix);
+        results.forEach((result -> System.out.println(result)));
+        System.out.println();
+    }
+
+    /**
+     * Parse error.
+     *
+     * @param simpleDBUtils
+     *         the simple dB utils
+     * @param prefix
+     *         the prefix
+     *
+     * @return the set
+     */
+    public Set<String> parseError(SimpleDBUtils simpleDBUtils, String prefix) {
+        Set<String> result = new HashSet<>();
         switch (prefix) {
             case ErrorCode.US01:
                 break;
-            case ErrorCode.US02:
-                break;
+            case ErrorCode.US02: {
+                // Birth before marriage
+                simpleDBUtils.getFamilyDBList().forEach((familyEntity -> {
+                    Date marriageDate = familyEntity.getMarriedDate();
+                    Date husbandBirthDate = familyEntity.getFather().getBirthDate();
+                    Date wifeBirthDate = familyEntity.getMother().getBirthDate();
+                    if (marriageDate != null && husbandBirthDate != null && wifeBirthDate != null) {
+                        if (husbandBirthDate.after(marriageDate) || wifeBirthDate.after(marriageDate)) {
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY, familyEntity.getIdentifier(), ErrorInfo.US02));
+                        }
+                    }
+                }));
+            }
+            break;
             case ErrorCode.US03:
                 break;
             case ErrorCode.US04:
                 break;
-            case ErrorCode.US05:
-                break;
+            case ErrorCode.US05: {
+                // Marriage before death
+                simpleDBUtils.getFamilyDBList().forEach((familyEntity -> {
+                    Date marriageDate = familyEntity.getMarriedDate();
+                    Date husbandDeathDate = familyEntity.getFather().getDeathDate();
+                    Date wifeDeathDate = familyEntity.getMother().getDeathDate();
+                    if (marriageDate != null && husbandDeathDate != null && wifeDeathDate != null) {
+                        if (husbandDeathDate.before(marriageDate) || wifeDeathDate.before(marriageDate)) {
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY, familyEntity.getIdentifier(), ErrorInfo.US05));
+                        }
+                    }
+                }));
+            }
+            break;
             case ErrorCode.US06:
                 break;
-            case ErrorCode.US08:
-                break;
-            case ErrorCode.US09:
-                break;
-            case ErrorCode.US10:
-                break;
-            case ErrorCode.US12:
-                break;
-            case ErrorCode.US16:
-                break;
-            case ErrorCode.US21:
-                break;
-            case ErrorCode.US22:
-                break;
-            case ErrorCode.US25:
-                break;
-            case ErrorCode.US29:
-                break;
-            case ErrorCode.US30:
-                break;
-            case ErrorCode.US31:
-                break;
-            case ErrorCode.US33:
-                break;
-            case ErrorCode.US35:
-                break;
-            case ErrorCode.US36:
-                break;
-            case ErrorCode.US38:
-                break;
-            case ErrorCode.US39:
-                break;
-            case ErrorCode.US40:
-                break;
-            case ErrorCode.US42:
-                break;
         }
-        System.out.println();
-    }
-
-    private List<FamilyEntity> getFamilyDB(SimpleDBUtils simpleDBUtils) {
-        List<FamilyEntity> familyEntities = new ArrayList<>();
-        for (int index = 1; index <= simpleDBUtils.getFamilyDB().size(); index++) {
-            familyEntities.add(simpleDBUtils.getFamilyDB().get(ParseEnum.FAMILY_PREFIX.toString() + index + ParseEnum.PREFIX.toString()));
-        }
-        return familyEntities;
-    }
-
-    private List<PersonEntity> getPersonDB(SimpleDBUtils simpleDBUtils) {
-        List<PersonEntity> personEntities = new ArrayList<>();
-        for (int index = 1; index <= simpleDBUtils.getPersonDB().size(); index++) {
-            personEntities.add(simpleDBUtils.getPersonDB().get(ParseEnum.PERSON_PREFIX.toString() + index + ParseEnum.PREFIX.toString()));
-        }
-        return personEntities;
+        return result;
     }
 
     private String[] splitName(String name) {
