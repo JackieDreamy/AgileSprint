@@ -50,7 +50,9 @@ public class ParserUtils {
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
             outputUtils.outputError(simpleDBUtils, ErrorCode.US02);
+            outputUtils.outputError(simpleDBUtils, ErrorCode.US04);
             outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
+            outputUtils.outputError(simpleDBUtils, ErrorCode.US06);
             return simpleDBUtils;
         } catch (FileNotFoundException fnfe) {
             ErrorUtils.pathError(fnfe, filePath);

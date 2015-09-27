@@ -99,8 +99,19 @@ public class OutputUtils {
             break;
             case ErrorCode.US03:
                 break;
-            case ErrorCode.US04:
-                break;
+            case ErrorCode.US04: {
+                // Divorce before marriage
+                simpleDBUtils.getFamilyDBList().forEach((familyEntity -> {
+                    Date marriageDate = familyEntity.getMarriedDate();
+                    Date divorceDate = familyEntity.getDivorceDate();
+                    if (marriageDate != null && divorceDate != null) {
+                        if (marriageDate.after(divorceDate) || divorceDate.before(marriageDate)) {
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY, familyEntity.getIdentifier(), ErrorInfo.US04));
+                        }
+                    }
+                }));
+            }
+            break;
             case ErrorCode.US05: {
                 // Marriage before death
                 simpleDBUtils.getFamilyDBList().forEach((familyEntity -> {
@@ -115,8 +126,20 @@ public class OutputUtils {
                 }));
             }
             break;
-            case ErrorCode.US06:
-                break;
+            case ErrorCode.US06:{
+                // Divorce after death of both spouses
+                simpleDBUtils.getFamilyDBList().forEach((familyEntity -> {
+                    Date divorceDate = familyEntity.getDivorceDate();
+                    Date husbandDeathDate = familyEntity.getFather().getDeathDate();
+                    Date wifeDeathDate = familyEntity.getMother().getDeathDate();
+                    if (divorceDate != null && husbandDeathDate != null && wifeDeathDate != null) {
+                        if (husbandDeathDate.before(divorceDate) || wifeDeathDate.before(divorceDate)) {
+                            result.add(String.format(FormatterRegex.ERROR_PERSON, familyEntity.getIdentifier(), ErrorInfo.US06));
+                        }
+                    }
+                }));
+            }
+
         }
         return result;
     }
