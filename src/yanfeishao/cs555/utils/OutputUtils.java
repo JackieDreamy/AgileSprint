@@ -62,7 +62,6 @@ public class OutputUtils {
      *         the output prefix
      */
     public void outputError(SimpleDBUtils simpleDBUtils, String prefix) {
-        System.out.println(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, prefix));
         Set<String> results = parseError(simpleDBUtils, prefix);
         results.forEach((result -> System.out.println(result)));
         System.out.println();
@@ -91,7 +90,7 @@ public class OutputUtils {
                     Date wifeBirthDate = familyEntity.getMother().getBirthDate();
                     if (marriageDate != null && husbandBirthDate != null && wifeBirthDate != null) {
                         if (husbandBirthDate.after(marriageDate) || wifeBirthDate.after(marriageDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY, familyEntity.getIdentifier(), ErrorInfo.US02));
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US02, prefix, familyEntity.getIdentifier()));
                         }
                     }
                 }));
@@ -106,7 +105,7 @@ public class OutputUtils {
                     Date divorceDate = familyEntity.getDivorceDate();
                     if (marriageDate != null && divorceDate != null) {
                         if (marriageDate.after(divorceDate) || divorceDate.before(marriageDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY, familyEntity.getIdentifier(), ErrorInfo.US04));
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US04, prefix, familyEntity.getIdentifier()));
                         }
                     }
                 }));
@@ -120,7 +119,7 @@ public class OutputUtils {
                     Date wifeDeathDate = familyEntity.getMother().getDeathDate();
                     if (marriageDate != null && husbandDeathDate != null && wifeDeathDate != null) {
                         if (husbandDeathDate.before(marriageDate) || wifeDeathDate.before(marriageDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY, familyEntity.getIdentifier(), ErrorInfo.US05));
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US05, prefix, familyEntity.getIdentifier()));
                         }
                     }
                 }));
@@ -134,7 +133,7 @@ public class OutputUtils {
                     Date wifeDeathDate = familyEntity.getMother().getDeathDate();
                     if (divorceDate != null && husbandDeathDate != null && wifeDeathDate != null) {
                         if (husbandDeathDate.before(divorceDate) || wifeDeathDate.before(divorceDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_PERSON, familyEntity.getIdentifier(), ErrorInfo.US06));
+                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US06, prefix, familyEntity.getIdentifier()));
                         }
                     }
                 }));

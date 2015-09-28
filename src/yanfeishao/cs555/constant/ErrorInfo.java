@@ -7,27 +7,27 @@ public class ErrorInfo {
     /**
      * The constant US01.
      */
-    public static final String US01 = "Dates (birth, marriage, divorce, death) should not be after the current date";
+    public static final String US01 = "Dates(birth, marriage, divorce, death) of family [%s] should not be after the current date\n";
     /**
      * The constant US02.
      */
-    public static final String US02 = "Birth should occur before marriage of an individual";
+    public static final String US02 = "Birth of one of family [%s] member date should occur before marriage of an individual\n";
     /**
      * The constant US03.
      */
-    public static final String US03 = "Birth should occur before death of an individual";
+    public static final String US03 = "Birth of one of family [%s] member date should occur before death of an individual\n";
     /**
      * The constant US04.
      */
-    public static final String US04 = "Marriage should occur before divorce of spouses, and divorce can only occur after marriage";
+    public static final String US04 = "Family [%s] marriage date should occur before divorce of spouses, and divorce can only occur after marriage\n";
     /**
      * The constant US05.
      */
-    public static final String US05 = "Marriage should occur before death of either spouse";
+    public static final String US05 = "Family [%s] marriage date should occur before death of either spouse\n";
     /**
      * The constant US06.
      */
-    public static final String US06 = "Divorce can only occur before death of both spouses";
+    public static final String US06 = "One of family [%s] member's divorce date can only occur before death of both spouses\n";
     /**
      * The constant US08.
      */

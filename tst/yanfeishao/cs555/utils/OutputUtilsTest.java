@@ -17,14 +17,14 @@ public class OutputUtilsTest extends TestCases {
 
     private Set<String> expectedUS02Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY, "@F11@", ErrorInfo.US02));
-        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY, "@F9@", ErrorInfo.US02));
+        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US02, ErrorCode.US02, "@F11@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US02, ErrorCode.US02, "@F9@"));
         return expectedResult;
     }
 
     private Set<String> expectedUS05Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY, "@F10@", ErrorInfo.US05));
+        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US05, ErrorCode.US05, "@F10@"));
         return expectedResult;
     }
 

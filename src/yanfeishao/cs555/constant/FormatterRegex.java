@@ -27,9 +27,9 @@ public class FormatterRegex {
     /**
      * The constant ERROR_FAMILY.
      */
-    public static final String ERROR_FAMILY = "ERROR FAMILY ID %s\n ERROR Reason %s";
+    public static final String ERROR_FAMILY = "ERROR CODE %s: \nCATEGORY: FAMILY\nREASON: ";
     /**
      * The constant ERROR_PERSON.
      */
-    public static final String ERROR_PERSON = "ERROR PERSON ID %s\n ERROR Reason %s";
+    public static final String ERROR_PERSON = "ERROR CODE %s: \nCATEGORY: PERSON\nREASON: ";
 }
