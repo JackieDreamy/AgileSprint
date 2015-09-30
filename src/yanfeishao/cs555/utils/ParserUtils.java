@@ -29,7 +29,7 @@ public class ParserUtils {
     /**
      * Read GED from file.
      *
-     * @param filePath the file path
+     * @param filePath          the file path
      * @return the string builder
      */
     public void readGEDCOM(String filePath) {
@@ -44,8 +44,8 @@ public class ParserUtils {
                 line = gedReader.readLine();
             }
             gedReader.close();
-            outputUtils.outputPerson(simpleDBUtils);
-            outputUtils.outputFamily(simpleDBUtils);
+            outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
+            outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
         } catch (FileNotFoundException fnfe) {
             ErrorUtils.pathError(fnfe, filePath);
         } catch (IOException ioe) {

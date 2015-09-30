@@ -15,7 +15,23 @@ public enum ParseEnum {
     /**
      * The DATE_FORMAT.
      */
-    DATE_FORMAT("dd-MMM-yyyy");
+    DATE_FORMAT("dd-MMM-yyyy"),
+    /**
+     * The PREFIX.
+     */
+    PREFIX("@"),
+    /**
+     * The FAMILY_PREFIX.
+     */
+    FAMILY_PREFIX("@F"),
+    /**
+     * The PERSON_PREFIX.
+     */
+    PERSON_PREFIX("@I"),
+    /**
+     * The PERSON_NAME_SPLIT.
+     */
+    PERSON_NAME_SPLIT("/");
 
     private String parseTag;
 
