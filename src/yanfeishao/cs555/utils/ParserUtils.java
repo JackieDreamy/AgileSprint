@@ -49,7 +49,9 @@ public class ParserUtils {
             gedReader.close();
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
             outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
+            outputUtils.outputError(simpleDBUtils, ErrorCode.US01);
             outputUtils.outputError(simpleDBUtils, ErrorCode.US02);
+            outputUtils.outputError(simpleDBUtils, ErrorCode.US03);
             outputUtils.outputError(simpleDBUtils, ErrorCode.US04);
             outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
             outputUtils.outputError(simpleDBUtils, ErrorCode.US06);
