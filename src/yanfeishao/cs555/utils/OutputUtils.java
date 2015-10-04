@@ -91,52 +91,34 @@ public class OutputUtils {
                     Date wifeBirthDate = familyEntity.getMother().getBirthDate();
                     Date husbandDeathDate = familyEntity.getFather().getDeathDate();
                     Date wifeDeathDate = familyEntity.getMother().getDeathDate();
-                    if (husbandBirthDate != null) {
-                        if (husbandBirthDate.after(todayDate)) {
+                    if (husbandBirthDate != null && husbandBirthDate.after(todayDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                        }
                     }
-                    if (husbandDeathDate != null) {
-                        if (husbandDeathDate.after(todayDate)) {
+                    if (husbandDeathDate != null && husbandDeathDate.after(todayDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                        }
                     }
-                    if (wifeBirthDate != null) {
-                        if (wifeBirthDate.after(todayDate)) {
+                    if (wifeBirthDate != null && wifeBirthDate.after(todayDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                        }
                     }
-                    if (wifeDeathDate != null) {
-                        if (wifeDeathDate.after(todayDate)) {
+                    if (wifeDeathDate != null && wifeDeathDate.after(todayDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                        }
                     }
-                    if (marriageDate != null) {
-                        if (marriageDate.after(todayDate)) {
+                    if (marriageDate != null && marriageDate.after(todayDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                        }
                     }
-                    if (divorceDate != null) {
-                        if (divorceDate.after(todayDate)) {
+                    if (divorceDate != null && divorceDate.after(todayDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                        }
                     }
                     familyEntity.getChildList().forEach(child -> {
-                        try {
+                        if (child != null) {
                             Date childBirthDate = child.getBirthDate();
                             Date childDeathDate = child.getDeathDate();
-                            if (childBirthDate != null) {
-                                if (childBirthDate.after(todayDate)) {
-                                    result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
+                            if (childBirthDate != null && childBirthDate.after(todayDate)) {
+                                result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
                                 }
-                            }
-                            if (child.getDeathDate() != null) {
-                                if (childDeathDate.after(todayDate)) {
-                                    result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
+                            if (child.getDeathDate() != null && childDeathDate.after(todayDate)) {
+                                result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
                                 }
-                            }
-                        } catch (NullPointerException e) {
-                            // null birth/death date
                         }
                     });
                 });
@@ -163,27 +145,19 @@ public class OutputUtils {
                     Date wifeBirthDate = familyEntity.getMother().getBirthDate();
                     Date husbandDeathDate = familyEntity.getFather().getDeathDate();
                     Date wifeDeathDate = familyEntity.getMother().getDeathDate();
-                    if (husbandBirthDate != null && husbandDeathDate != null) {
-                        if (husbandBirthDate.after(husbandDeathDate)) {
+                    if (husbandBirthDate != null && husbandDeathDate != null && husbandBirthDate.after(husbandDeathDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US03, prefix, familyEntity.getIdentifier()));
-                        }
                     }
-                    if (wifeBirthDate != null && wifeDeathDate != null) {
-                        if (wifeBirthDate.after(wifeDeathDate)) {
+                    if (wifeBirthDate != null && wifeDeathDate != null && wifeBirthDate.after(wifeDeathDate)) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US03, prefix, familyEntity.getIdentifier()));
-                        }
                     }
                     familyEntity.getChildList().forEach(child -> {
-                        try {
+                        if (child != null) {
                             Date childBirthDate = child.getBirthDate();
                             Date childDeathDate = child.getDeathDate();
-                            if (childBirthDate != null && childDeathDate != null) {
-                                if (childBirthDate.after(childDeathDate)) {
+                            if (childBirthDate != null && childDeathDate != null && childBirthDate.after(childDeathDate)) {
                                     result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US03, prefix, familyEntity.getIdentifier()));
-                                }
                             }
-                        } catch (NullPointerException e) {
-                            // null birth/death date
                         }
                     });
                 });
