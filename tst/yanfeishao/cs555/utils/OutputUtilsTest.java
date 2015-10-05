@@ -52,7 +52,7 @@ public class OutputUtilsTest extends TestCases {
     public void parseUS01CaseTest() {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
-        Assert.assertArrayEquals(expectedUS01Result().toArray(), outputUtils.parseError(simpleDBUtils, ErrorCode.US01).toArray());
+        Assert.assertArrayEquals(expectedUS01Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US01).toArray());
     }
 
     /**
@@ -62,7 +62,7 @@ public class OutputUtilsTest extends TestCases {
     public void parseUS02CaseTest() {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
-        Assert.assertArrayEquals(expectedUS02Result().toArray(), outputUtils.parseError(simpleDBUtils, ErrorCode.US02).toArray());
+        Assert.assertArrayEquals(expectedUS02Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US02).toArray());
     }
 
     /**
@@ -72,7 +72,7 @@ public class OutputUtilsTest extends TestCases {
     public void parseUS03CaseTest() {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
-        Assert.assertArrayEquals(expectedUS03Result().toArray(), outputUtils.parseError(simpleDBUtils, ErrorCode.US03).toArray());
+        Assert.assertArrayEquals(expectedUS03Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US03).toArray());
     }
 
     /**
@@ -82,7 +82,7 @@ public class OutputUtilsTest extends TestCases {
     public void parseUS05CaseTest() {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
-        Assert.assertArrayEquals(expectedUS05Result().toArray(), outputUtils.parseError(simpleDBUtils, ErrorCode.US05).toArray());
+        Assert.assertArrayEquals(expectedUS05Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US05).toArray());
     }
 }
 
