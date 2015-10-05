@@ -91,13 +91,10 @@ public class OutputUtils {
                     Date wifeBirthDate = familyEntity.getMother().getBirthDate();
                     Date husbandDeathDate = familyEntity.getFather().getDeathDate();
                     Date wifeDeathDate = familyEntity.getMother().getDeathDate();
-                    if ((husbandBirthDate != null && husbandBirthDate.after(todayDate)) || husbandDeathDate != null && husbandDeathDate.after(todayDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                    }
-                    if ((wifeBirthDate != null && wifeBirthDate.after(todayDate)) || (wifeDeathDate != null && wifeDeathDate.after(todayDate))) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
-                    }
-                    if ((marriageDate != null && marriageDate.after(todayDate)) || (divorceDate != null && divorceDate.after(todayDate))) {
+                    boolean husbandCondition = (husbandBirthDate != null && husbandBirthDate.after(todayDate)) || (husbandDeathDate != null && husbandDeathDate.after(todayDate));
+                    boolean wifeCondition = (wifeBirthDate != null && wifeBirthDate.after(todayDate)) || (wifeDeathDate != null && wifeDeathDate.after(todayDate));
+                    boolean marriageCondition = (marriageDate != null && marriageDate.after(todayDate)) || (divorceDate != null && divorceDate.after(todayDate));
+                    if (husbandCondition || wifeCondition || marriageCondition) {
                             result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01, prefix, familyEntity.getIdentifier()));
                     }
                     familyEntity.getChildList().forEach(child -> {
