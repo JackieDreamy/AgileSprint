@@ -23,7 +23,7 @@ public class FormatterRegex {
     /**
      * The constant ERROR_TITLE.
      */
-    public static final String ERROR_TITLE = "%s %s: ";
+    public static final String ERROR_TITLE = "%s%s: ";
     /**
      * The constant ERROR_FAMILY.
      */
