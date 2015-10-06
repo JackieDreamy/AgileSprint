@@ -87,5 +87,9 @@ public class KeywordsConstant {
     /**
      * The constant ERROR.
      */
-    public static final String ERROR = "ERROR";
+    public static final String ERROR = "[ERROR] ";
+    /**
+     * The constant INFO.
+     */
+    public static final String INFO = "[INFO] ";
 }

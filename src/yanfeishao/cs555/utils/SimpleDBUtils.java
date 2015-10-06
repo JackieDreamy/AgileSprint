@@ -22,11 +22,25 @@ public class SimpleDBUtils {
     /**
      * Instantiates a new Simple dB utils.
      */
-    public SimpleDBUtils() {
+    private SimpleDBUtils() {
         personDB = new HashMap<>();
         familyDB = new HashMap<>();
     }
 
+    /**
+     * Create db factory simple db utils.
+     *
+     * @return the simple db utils
+     */
+    public static SimpleDBUtils createDBFactory() {
+        return new SimpleDBUtils();
+    }
+
+    /**
+     * Gets family db list.
+     *
+     * @return the family db list
+     */
     public List<FamilyEntity> getFamilyDBList() {
         List<FamilyEntity> familyEntities = new ArrayList<>();
         for (int index = 1; index <= getFamilyDB().size(); index++) {
@@ -35,6 +49,11 @@ public class SimpleDBUtils {
         return familyEntities;
     }
 
+    /**
+     * Gets person db list.
+     *
+     * @return the person db list
+     */
     public List<PersonEntity> getPersonDBList() {
         List<PersonEntity> personEntities = new ArrayList<>();
         for (int index = 1; index <= getPersonDB().size(); index++) {

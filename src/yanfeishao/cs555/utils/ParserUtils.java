@@ -27,6 +27,18 @@ public class ParserUtils {
     private FamilyEntity familyEntity;
     private OutputUtils outputUtils;
 
+    private ParserUtils() {
+    }
+
+    /**
+     * Create parser factory parser utils.
+     *
+     * @return the parser utils
+     */
+    public static ParserUtils createParserFactory() {
+        return new ParserUtils();
+    }
+
     /**
      * Read GED from file.
      *
@@ -37,24 +49,18 @@ public class ParserUtils {
      */
     public SimpleDBUtils readGEDCOM(String filePath) {
         try {
-            tagsUtils = new TagsUtils();
+            tagsUtils = TagsUtils.createTagFactory();
             gedReader = new BufferedReader(new FileReader(filePath));
-            simpleDBUtils = new SimpleDBUtils();
-            outputUtils = new OutputUtils();
+            simpleDBUtils = SimpleDBUtils.createDBFactory();
+            outputUtils = OutputUtils.createOutputFactory();
             String line = gedReader.readLine();
             while (line != null) {
                 parseTag(line);
                 line = gedReader.readLine();
             }
             gedReader.close();
-            outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
-            outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
-            outputUtils.outputError(simpleDBUtils, ErrorCode.US01);
-            outputUtils.outputError(simpleDBUtils, ErrorCode.US02);
-            outputUtils.outputError(simpleDBUtils, ErrorCode.US03);
-            outputUtils.outputError(simpleDBUtils, ErrorCode.US04);
-            outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
-            outputUtils.outputError(simpleDBUtils, ErrorCode.US06);
+            outputResult();
+            outputError();
             return simpleDBUtils;
         } catch (FileNotFoundException fnfe) {
             ErrorUtils.pathError(fnfe, filePath);
@@ -63,6 +69,20 @@ public class ParserUtils {
             ErrorUtils.readGEDError(ioe);
             return null;
         }
+    }
+
+    private void outputResult() {
+        outputUtils.outputResult(simpleDBUtils, KeywordsConstant.FAM);
+        outputUtils.outputResult(simpleDBUtils, KeywordsConstant.INDI);
+    }
+
+    private void outputError() {
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US01);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US02);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US03);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US04);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US06);
     }
 
     private Date parseDate(String line) {

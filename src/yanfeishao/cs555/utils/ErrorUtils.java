@@ -7,11 +7,63 @@ import yanfeishao.cs555.constant.KeywordsConstant;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Yanfei Shao on 2015.
+ * Refactor by Yanfei Shao
  */
 public class ErrorUtils {
+
+    /**
+     * Parse date error.
+     *
+     * @param dateUtils
+     *         the date utils
+     * @param simpleDBUtils
+     *         the simple db utils
+     * @param prefix
+     *         the prefix
+     * @param result
+     *         the result
+     */
+    public void parseDateError(DateUtils dateUtils, SimpleDBUtils simpleDBUtils, String prefix, Set<String> result) {
+        simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
+            Date marriageDate = familyEntity.getMarriedDate();
+            Date divorceDate = familyEntity.getDivorceDate();
+            Date husbandBirthDate = familyEntity.getFather().getBirthDate();
+            Date wifeBirthDate = familyEntity.getMother().getBirthDate();
+            Date husbandDeathDate = familyEntity.getFather().getDeathDate();
+            Date wifeDeathDate = familyEntity.getMother().getDeathDate();
+            switch (prefix) {
+                case ErrorCode.US01: {
+                    dateUtils.parseUS01Error(result, prefix, familyEntity, marriageDate, divorceDate, husbandBirthDate, wifeBirthDate, husbandDeathDate, wifeDeathDate);
+                }
+                break;
+                case ErrorCode.US02: {
+                    dateUtils.parseUS02Error(result, prefix, familyEntity, marriageDate, husbandBirthDate, wifeBirthDate);
+                }
+                break;
+                case ErrorCode.US03: {
+                    dateUtils.parseUS03Error(result, prefix, familyEntity, husbandBirthDate, husbandDeathDate, wifeBirthDate, wifeDeathDate);
+                }
+                break;
+                case ErrorCode.US04: {
+                    dateUtils.parseUS04Error(result, prefix, familyEntity, marriageDate, divorceDate);
+                }
+                break;
+                case ErrorCode.US05: {
+                    dateUtils.parseUS05Error(result, prefix, familyEntity, husbandDeathDate, wifeDeathDate, marriageDate);
+                }
+                break;
+                case ErrorCode.US06: {
+                    dateUtils.parseUS06Error(result, prefix, familyEntity, husbandBirthDate, wifeBirthDate, divorceDate);
+                }
+                break;
+            }
+        });
+    }
 
     /**
      * Read GED error.
@@ -21,7 +73,7 @@ public class ErrorUtils {
      */
     public static void readGEDError(IOException ioe) {
         String message = String.format(ErrorInfo.READ_ERROR);
-        System.out.println(message);
+        LogUtils.error(message);
         throw new RuntimeException(message, ioe);
     }
 
@@ -32,9 +84,9 @@ public class ErrorUtils {
      *         the current date
      */
     public static void parseError(StringBuffer currentDate) {
-        System.out.println(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US42));
+        LogUtils.log(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US42));
         String message = String.format(ErrorInfo.PARSE_ERROR, currentDate.toString());
-        System.out.println(message);
+        LogUtils.error(message);
     }
 
     /**
@@ -47,7 +99,7 @@ public class ErrorUtils {
      */
     public static void pathError(FileNotFoundException fnfe, String filePath) {
         String message = String.format(ErrorInfo.PATH_ERROR, filePath);
-        System.out.println(message);
+        LogUtils.error(message);
         throw new RuntimeException(message, fnfe);
     }
 }
