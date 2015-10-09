@@ -51,7 +51,7 @@ public class AttributeUtils {
     public void parseUS16Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         familyEntity.getChildList().forEach(child -> {
             if (us16ParseCondition(familyEntity, child)) {
-                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16, prefix, child.getIdentifier()));
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16_PERSON, prefix, child.getIdentifier(), child.getName(), familyEntity.getIdentifier(), familyEntity.getFather().getName()));
             }
         });
     }

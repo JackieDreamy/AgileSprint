@@ -1,105 +1,201 @@
 package yanfeishao.cs555.constant;
 
 /**
- * Created by JackieDreamy on 2015.
+ * The type Error info.
  */
 public class ErrorInfo {
     /**
-     * The constant US01.
+     * The constant US01_FAMILY.
      */
-    public static final String US01 = "Dates(birth, marriage, divorce, death) of family [%s] should not be after the current date\n";
+    public static final String US01_FAMILY = "Dates(birth, marriage, divorce, death) of family [%s] should not be after the current date\n";
     /**
-     * The constant US02.
+     * The constant US02_FAMILY.
      */
-    public static final String US02 = "Birth of one of family [%s] member date should occur before marriage of an individual\n";
+    public static final String US02_FAMILY = "Birth of one of family [%s] member date should occur before marriage of an individual\n";
     /**
-     * The constant US03.
+     * The constant US03_FAMILY.
      */
-    public static final String US03 = "Birth of one of family [%s] member date should occur before death of an individual\n";
+    public static final String US03_FAMILY = "Birth of one of family [%s] member date should occur before death of an individual\n";
     /**
-     * The constant US04.
+     * The constant US04_FAMILY.
      */
-    public static final String US04 = "Family [%s] marriage date should occur before divorce of spouses, and divorce can only occur after marriage\n";
+    public static final String US04_FAMILY = "Family [%s] marriage date should occur before divorce of spouses, and divorce can only occur after marriage\n";
     /**
-     * The constant US05.
+     * The constant US05_FAMILY.
      */
-    public static final String US05 = "Family [%s] marriage date should occur before death of either spouse\n";
+    public static final String US05_FAMILY = "Family [%s] marriage date should occur before death of either spouse\n";
     /**
-     * The constant US06.
+     * The constant US06_FAMILY.
      */
-    public static final String US06 = "One of family [%s] member's divorce date can only occur before death of both spouses\n";
+    public static final String US06_FAMILY = "One of family [%s] member's divorce date can only occur before death of both spouses\n";
     /**
-     * The constant US08.
+     * The constant US08_FAMILY.
      */
-    public static final String US08 = "Child should be born after marriage of parents (and before their divorce)";
+    public static final String US08_FAMILY = "Child should be born after marriage of parents (and before their divorce)";
     /**
-     * The constant US09.
+     * The constant US09_FAMILY.
      */
-    public static final String US09 = "Child from family [%s] should be born before death of mother and before 9 months after death of father";
+    public static final String US09_FAMILY = "Child from family [%s] should be born before death of mother and before 9 months after death of father";
     /**
-     * The constant US10.
+     * The constant US10_FAMILY.
      */
-    public static final String US10 = "Marriage should be at least 14 years after birth of both spouses";
+    public static final String US10_FAMILY = "Marriage should be at least 14 years after birth of both spouses";
     /**
-     * The constant US12.
+     * The constant US12_FAMILY.
      */
-    public static final String US12 = "Mother should be less than 60 years older than her children and father should be less than 80 years older than his children";
+    public static final String US12_FAMILY = "Mother should be less than 60 years older than her children and father should be less than 80 years older than his children";
     /**
-     * The constant US16.
+     * The constant US16_FAMILY.
      */
-    public static final String US16 = "[%s] male members of a family have not the same last name";
+    public static final String US16_FAMILY = "[%s] male members of a family have not the same last name";
     /**
-     * The constant US21.
+     * The constant US21_FAMILY.
      */
-    public static final String US21 = "Husband in family should be male and wife in family should be female";
+    public static final String US21_FAMILY = "Husband in family should be male and wife in family should be female";
     /**
-     * The constant US22.
+     * The constant US22_FAMILY.
      */
-    public static final String US22 = "All individual IDs should be unique and all family IDs should be unique";
+    public static final String US22_FAMILY = "All individual IDs should be unique and all family IDs should be unique";
     /**
-     * The constant US25.
+     * The constant US25_FAMILY.
      */
-    public static final String US25 = "No more than one child with the same name and birth date should appear in a family";
+    public static final String US25_FAMILY = "No more than one child with the same name and birth date should appear in a family";
     /**
-     * The constant US29.
+     * The constant US29_FAMILY.
      */
-    public static final String US29 = "List all deceased individuals in a GEDCOM file";
+    public static final String US29_FAMILY = "List all deceased individuals in a GEDCOM file";
     /**
-     * The constant US30.
+     * The constant US30_FAMILY.
      */
-    public static final String US30 = "List all living married people in a GEDCOM file";
+    public static final String US30_FAMILY = "List all living married people in a GEDCOM file";
     /**
-     * The constant US31.
+     * The constant US31_FAMILY.
      */
-    public static final String US31 = "List all living people over 30 who have never been married in a GEDCOM file";
+    public static final String US31_FAMILY = "List all living people over 30 who have never been married in a GEDCOM file";
     /**
-     * The constant US33.
+     * The constant US33_FAMILY.
      */
-    public static final String US33 = "List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file";
+    public static final String US33_FAMILY = "List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file";
     /**
-     * The constant US35.
+     * The constant US35_FAMILY.
      */
-    public static final String US35 = "List all people in a GEDCOM file who were born in the last 30 days";
+    public static final String US35_FAMILY = "List all people in a GEDCOM file who were born in the last 30 days";
     /**
-     * The constant US36.
+     * The constant US36_FAMILY.
      */
-    public static final String US36 = "List all people in a GEDCOM file who died in the last 30 days";
+    public static final String US36_FAMILY = "List all people in a GEDCOM file who died in the last 30 days";
     /**
-     * The constant US38.
+     * The constant US38_FAMILY.
      */
-    public static final String US38 = "List all living people in a GEDCOM file whose birthdays occur in the next 30 days";
+    public static final String US38_FAMILY = "List all living people in a GEDCOM file whose birthdays occur in the next 30 days";
     /**
-     * The constant US39.
+     * The constant US39_FAMILY.
      */
-    public static final String US39 = "List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days";
+    public static final String US39_FAMILY = "List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days";
     /**
-     * The constant US40.
+     * The constant US40_FAMILY.
      */
-    public static final String US40 = "List line numbers from GEDCOM source file when reporting errors";
+    public static final String US40_FAMILY = "List line numbers from GEDCOM source file when reporting errors";
     /**
-     * The constant US42.
+     * The constant US42_FAMILY.
      */
-    public static final String US42 = "All dates should be legitimate dates for the months specified (e.g., 2/30/2015 is not legitimate)";
+    public static final String US42_FAMILY = "All dates should be legitimate dates for the months specified (e.g., 2/30/2015 is not legitimate)";
+    /**
+     * The constant US01_PERSON.
+     */
+    public static final String US01_PERSON = "Dates(birth, marriage, divorce, death) of family [%s] should not be after the current date\n";
+    /**
+     * The constant US02_PERSON.
+     */
+    public static final String US02_PERSON = "Birth of member [FamilyId: %s PersonId: %s Name: %s BirthDate: %s] date should occur before marriage date [%s] of an individual\n";
+    /**
+     * The constant US03_PERSON.
+     */
+    public static final String US03_PERSON = "Birth of one of family [%s] member date should occur before death of an individual\n";
+    /**
+     * The constant US04_PERSON.
+     */
+    public static final String US04_PERSON = "Family [%s] marriage date should occur before divorce of spouses, and divorce can only occur after marriage\n";
+    /**
+     * The constant US05_PERSON.
+     */
+    public static final String US05_PERSON = "Family [%s] marriage date [%s] should occur before death of either spouse [PersonId: %s Name: %s DeathDate: %s]\n";
+    /**
+     * The constant US06_PERSON.
+     */
+    public static final String US06_PERSON = "One of family [%s] member's divorce date can only occur before death of both spouses\n";
+    /**
+     * The constant US08_PERSON.
+     */
+    public static final String US08_PERSON = "Child should be born after marriage of parents (and before their divorce)";
+    /**
+     * The constant US09_PERSON.
+     */
+    public static final String US09_PERSON = "Child [PersonId: %s, Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [%s's deathDate: %s]";
+    /**
+     * The constant US10_PERSON.
+     */
+    public static final String US10_PERSON = "Marriage should be at least 14 years after birth of both spouses";
+    /**
+     * The constant US12_PERSON.
+     */
+    public static final String US12_PERSON = "Mother should be less than 60 years older than her children and father should be less than 80 years older than his children";
+    /**
+     * The constant US16_PERSON.
+     */
+    public static final String US16_PERSON = "Male members [PersonId: %s, Name: %s] of a family [%s] have not the same last name [%s]";
+    /**
+     * The constant US21_PERSON.
+     */
+    public static final String US21_PERSON = "Husband in family should be male and wife in family should be female";
+    /**
+     * The constant US22_PERSON.
+     */
+    public static final String US22_PERSON = "All individual IDs should be unique and all family IDs should be unique";
+    /**
+     * The constant US25_PERSON.
+     */
+    public static final String US25_PERSON = "No more than one child with the same name and birth date should appear in a family";
+    /**
+     * The constant US29_PERSON.
+     */
+    public static final String US29_PERSON = "List all deceased individuals in a GEDCOM file";
+    /**
+     * The constant US30_PERSON.
+     */
+    public static final String US30_PERSON = "List all living married people in a GEDCOM file";
+    /**
+     * The constant US31_PERSON.
+     */
+    public static final String US31_PERSON = "List all living people over 30 who have never been married in a GEDCOM file";
+    /**
+     * The constant US33_PERSON.
+     */
+    public static final String US33_PERSON = "List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file";
+    /**
+     * The constant US35_PERSON.
+     */
+    public static final String US35_PERSON = "List all people in a GEDCOM file who were born in the last 30 days";
+    /**
+     * The constant US36_PERSON.
+     */
+    public static final String US36_PERSON = "List all people in a GEDCOM file who died in the last 30 days";
+    /**
+     * The constant US38_PERSON.
+     */
+    public static final String US38_PERSON = "List all living people in a GEDCOM file whose birthdays occur in the next 30 days";
+    /**
+     * The constant US39_PERSON.
+     */
+    public static final String US39_PERSON = "List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days";
+    /**
+     * The constant US40_PERSON.
+     */
+    public static final String US40_PERSON = "List line numbers from GEDCOM source file when reporting errors";
+    /**
+     * The constant US42_PERSON.
+     */
+    public static final String US42_PERSON = "All dates should be legitimate dates for the months specified (e.g., 2/30/2015 is not legitimate)";
     /**
      * The constant READ_ERROR.
      */
