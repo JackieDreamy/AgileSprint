@@ -131,7 +131,7 @@ public class ErrorInfo {
     /**
      * The constant US09_PERSON.
      */
-    public static final String US09_PERSON = "Child [PersonId: %s, Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [%s's deathDate: %s]";
+    public static final String US09_PERSON = "Child [PersonId: %s, Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [%s's deathDate: %s]\n";
     /**
      * The constant US10_PERSON.
      */
@@ -143,7 +143,7 @@ public class ErrorInfo {
     /**
      * The constant US16_PERSON.
      */
-    public static final String US16_PERSON = "Male members [PersonId: %s, Name: %s] of a family [%s] have not the same last name [%s]";
+    public static final String US16_PERSON = "Male members [PersonId: %s, Name: %s] of a family [%s] have not the same last name [%s]\n";
     /**
      * The constant US21_PERSON.
      */
