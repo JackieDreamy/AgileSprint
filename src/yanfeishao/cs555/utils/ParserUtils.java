@@ -83,6 +83,8 @@ public class ParserUtils {
         outputUtils.outputError(simpleDBUtils, ErrorCode.US04);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US06);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US09);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US16);
     }
 
     private Date parseDate(String line) {

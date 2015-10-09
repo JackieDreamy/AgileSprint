@@ -61,6 +61,33 @@ public class ErrorUtils {
                     dateUtils.parseUS06Error(result, prefix, familyEntity, husbandBirthDate, wifeBirthDate, divorceDate);
                 }
                 break;
+                case ErrorCode.US09: {
+                    dateUtils.parseUS09Error(result, prefix, familyEntity);
+                }
+                break;
+            }
+        });
+    }
+
+    /**
+     * Parse attribute error.
+     *
+     * @param attributeUtils
+     *         the name utils
+     * @param simpleDBUtils
+     *         the simple db utils
+     * @param prefix
+     *         the prefix
+     * @param result
+     *         the result
+     */
+    public void parseAttributeError(AttributeUtils attributeUtils, SimpleDBUtils simpleDBUtils, String prefix, Set<String> result) {
+        simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
+            switch (prefix) {
+                case ErrorCode.US16: {
+                    attributeUtils.parseUS16Error(result, prefix, familyEntity);
+                }
+                break;
             }
         });
     }

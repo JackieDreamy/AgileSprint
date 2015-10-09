@@ -75,6 +75,7 @@ public class OutputUtils {
     public Set<String> outputError(SimpleDBUtils simpleDBUtils, String prefix) {
         Set<String> results = new HashSet<>();
         new ErrorUtils().parseDateError(DateUtils.createDateFactory(), simpleDBUtils, prefix, results);
+        new ErrorUtils().parseAttributeError(AttributeUtils.createAttributeFactory(), simpleDBUtils, prefix, results);
         results.forEach((result -> LogUtils.error(result)));
         LogUtils.line();
         return results;

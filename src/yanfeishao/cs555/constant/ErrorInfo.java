@@ -35,7 +35,7 @@ public class ErrorInfo {
     /**
      * The constant US09.
      */
-    public static final String US09 = "Child should be born before death of mother and before 9 months after death of father";
+    public static final String US09 = "Child from family [%s] should be born before death of mother and before 9 months after death of father";
     /**
      * The constant US10.
      */
@@ -47,7 +47,7 @@ public class ErrorInfo {
     /**
      * The constant US16.
      */
-    public static final String US16 = "All male members of a family should have the same last name";
+    public static final String US16 = "[%s] male members of a family have not the same last name";
     /**
      * The constant US21.
      */

@@ -45,6 +45,20 @@ public class OutputUtilsTest extends TestCases {
         return expectedResult;
     }
 
+    private Set<String> expectedUS09Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US09, ErrorCode.US09, "@F5@"));
+        // F8 should not be here, but we do not handle duplicate Identifier, after we start sprint 3, this record should be removed.
+        expectedResult.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US09, ErrorCode.US09, "@F8@"));
+        return expectedResult;
+    }
+
+    private Set<String> expectedUS16Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16, ErrorCode.US16, "@P19@"));
+        return expectedResult;
+    }
+
     /**
      * Parse uS 01 case test.
      */
@@ -83,6 +97,26 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS05Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US05).toArray());
+    }
+
+    /**
+     * Parse us 09 case test.
+     */
+    @Test
+    public void parseUS09CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS09Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US09).toArray());
+    }
+
+    /**
+     * Parse us 16 case test.
+     */
+    @Test
+    public void parseUS16CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS16Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US16).toArray());
     }
 }
 
