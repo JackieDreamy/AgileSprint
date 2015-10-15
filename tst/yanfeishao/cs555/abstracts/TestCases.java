@@ -23,14 +23,6 @@ public class TestCases {
      */
     protected static final int PERSON_EXPECTED_SIZE = 27;
     /**
-     * The constant US02_IDENTIFIER.
-     */
-    protected static final String[] US02_IDENTIFIER = {"@F11", "@F9"};
-    /**
-     * The constant US05_IDENTIFIER.
-     */
-    protected static final String[] US05_IDENTIFIER = {"@F10"};
-    /**
      * The constant FILE_PATH.
      */
     protected static final String FILE_PATH = "src/yanfeishao/cs555/data/data.ged";
@@ -57,10 +49,10 @@ public class TestCases {
     protected static OutputUtils outputUtils;
 
     static {
-        tagsUtils = new TagsUtils();
-        parserUtils = new ParserUtils();
-        simpleDBUtils = new SimpleDBUtils();
-        outputUtils = new OutputUtils();
+        tagsUtils = TagsUtils.createTagFactory();
+        parserUtils = ParserUtils.createParserFactory();
+        simpleDBUtils = SimpleDBUtils.createDBFactory();
+        outputUtils = OutputUtils.createOutputFactory();
     }
 
 }

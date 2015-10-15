@@ -14,7 +14,7 @@ public class Main {
      *         the input arguments
      */
     public static void main(String[] args) {
-        ParserUtils parserUtils = new ParserUtils();
+        ParserUtils parserUtils = ParserUtils.createParserFactory();
         parserUtils.readGEDCOM(args[0]);
     }
 }

@@ -17,7 +17,7 @@ public class TagsUtils {
     /**
      * Instantiates a new Tags utils.
      */
-    public TagsUtils() {
+    private TagsUtils() {
         tagSets = new HashSet<>();
         tagSets.add(KeywordsConstant.INDI);
         tagSets.add(KeywordsConstant.NAME);
@@ -36,5 +36,14 @@ public class TagsUtils {
         tagSets.add(KeywordsConstant.HEAD);
         tagSets.add(KeywordsConstant.TRLR);
         tagSets.add(KeywordsConstant.NOTE);
+    }
+
+    /**
+     * Create tag factory tags utils.
+     *
+     * @return the tags utils
+     */
+    public static TagsUtils createTagFactory() {
+        return new TagsUtils();
     }
 }
