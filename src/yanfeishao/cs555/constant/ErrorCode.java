@@ -99,5 +99,5 @@ public class ErrorCode {
     /**
      * The constant US42.
      */
-    public static final String US42 = "CODE US42";
+    public static final String US42 = "US42";
 }

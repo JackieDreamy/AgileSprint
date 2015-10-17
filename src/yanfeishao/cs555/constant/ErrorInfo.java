@@ -19,7 +19,7 @@ public class ErrorInfo {
     /**
      * The constant US04_FAMILY.
      */
-    public static final String US04_FAMILY = "Family [%s] marriage date should occur before divorce of spouses, and divorce can only occur after marriage\n";
+    public static final String US04_FAMILY = "Marriage date of Family %s occurs before divorce of spouses\n";
     /**
      * The constant US05_FAMILY.
      */
@@ -115,7 +115,7 @@ public class ErrorInfo {
     /**
      * The constant US04_PERSON.
      */
-    public static final String US04_PERSON = "Family [%s] marriage date should occur before divorce of spouses, and divorce can only occur after marriage\n";
+    public static final String US04_PERSON = "Marriage date [%s] of Family %s occurs before divorce date [%s]\n";
     /**
      * The constant US05_PERSON.
      */
@@ -123,7 +123,8 @@ public class ErrorInfo {
     /**
      * The constant US06_PERSON.
      */
-    public static final String US06_PERSON = "One of family [%s] member's divorce date can only occur before death of both spouses\n";
+    public static final String US06_PERSON = "Individual %s's death date [%s] occurs before divorce date [%s] in Family %s\n";
+
     /**
      * The constant US08_PERSON.
      */
