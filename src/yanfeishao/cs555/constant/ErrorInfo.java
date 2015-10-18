@@ -127,7 +127,7 @@ public class ErrorInfo {
     /**
      * The constant US08_PERSON.
      */
-    public static final String US08_PERSON = "Child should be born after marriage of parents (and before their divorce)";
+    public static final String US08_PERSON = "Child [PersonId: %s, Name: %s]'s birth date [%s] %s parents %s date [%s] occurs in Family [%s]\n";
     /**
      * The constant US09_PERSON.
      */
@@ -139,7 +139,7 @@ public class ErrorInfo {
     /**
      * The constant US12_PERSON.
      */
-    public static final String US12_PERSON = "Mother should be less than 60 years older than her children and father should be less than 80 years older than his children";
+    public static final String US12_PERSON = "%s [PersonId: %s, Name: %s, Birth Date: %s]'s age is more than %s years older than %s child [PersonId: %s, Name: %s, Birth Date: %s] in Family %s \n";
     /**
      * The constant US16_PERSON.
      */

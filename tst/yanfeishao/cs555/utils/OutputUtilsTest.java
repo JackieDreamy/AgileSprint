@@ -56,11 +56,30 @@ public class OutputUtilsTest extends TestCases {
         return expectedResult;
     }
 
+    private Set<String> expectedUS08Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, ErrorCode.US08, "@P15@", "Darlene/Cook/", "Sun Oct 18 00:00:00 EDT 1998", "after", "divorce", "Tue Mar 15 00:00:00 EST 1921", "@F8@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, ErrorCode.US08, "@P24@", "John/Cook/Jr", "Fri Feb 08 00:00:00 EST 1952", "before", "marriage", "Wed Jun 10 00:00:00 EDT 1953", "@F9@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, ErrorCode.US08, "@P1@", "EdwinWilliam/Hague/", "Sat Jan 21 00:00:00 EST 1933", "before", "marriage", "Mon Jun 12 00:00:00 EDT 1933","@F2@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, ErrorCode.US08, "@P14@", "Jillian/Cook/", "Wed Oct 15 00:00:00 EST 1924", "after", "divorce", "Tue Mar 15 00:00:00 EST 1921", "@F8@"));
+        //expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, ErrorCode.US08, "@P15@", "John /Cook/", "26 Dec 1922", "Tue Mar 15 00:00:00 EST 1921", "@F8@"));
+        return expectedResult;
+    }
+
     private Set<String> expectedUS09Result() {
         Set<String> expectedResult = new HashSet<>();
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09_PERSON, ErrorCode.US09, "@P16@", "Inez/Youngster/", "Thu Jun 04 00:00:00 EDT 1970", "@F5@", "@P9@", "Thu Apr 11 00:00:00 EST 1963"));
         // F8 should not be here, but we do not handle duplicate Identifier, after we start sprint 3, this record should be removed.
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09_PERSON, ErrorCode.US09, "@P15@", "Darlene/Cook/", "Sun Oct 18 00:00:00 EDT 1998", "@F8@", "@P6@", "Tue Feb 02 00:00:00 EST 1965"));
+        return expectedResult;
+    }
+
+    private Set<String> expectedUS12Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, ErrorCode.US12, "Mother", "@P14@", "Jillian/Cook/", "Wed Oct 15 00:00:00 EST 1924", "60", "her", "@P20@", "Elisabeth/Elsasser/", "Tue May 30 00:00:00 EDT 1989", "@F12@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, ErrorCode.US12, "Mother", "@P6@", "Ursula/Braddock/", "Wed Aug 11 00:00:00 EST 1886", "60", "her", "@P15@", "Darlene/Cook/",  "Sun Oct 18 00:00:00 EDT 1998",  "@F8@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, ErrorCode.US12, "Mother", "@P14@", "Jillian/Cook/", "Wed Oct 15 00:00:00 EST 1924", "60", "her", "@P19@", "John/Elsaesser/", "Thu Oct 29 00:00:00 EST 1992", "@F12@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, ErrorCode.US12, "Mother", "@P9@", "Elizabeth/VanHaste/", "Fri Sep 10 00:00:00 EST 1880", "60", "her", "@P16@", "Inez/Youngster/", "Thu Jun 04 00:00:00 EDT 1970", "@F5@"));
         return expectedResult;
     }
 
@@ -130,6 +149,16 @@ public class OutputUtilsTest extends TestCases {
     }
 
     /**
+     * Parse uS 08 case test.
+     * */
+    @Test
+    public void parseUS08CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS08Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US08).toArray());
+    }
+
+    /**
      * Parse us 09 case test.
      */
     @Test
@@ -137,6 +166,16 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS09Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US09).toArray());
+    }
+
+    /**
+     * Parse us 12 case test.
+    */
+    @Test
+    public void parseUS12CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS12Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US12).toArray());
     }
 
     /**
