@@ -127,7 +127,7 @@ public class ErrorInfo {
     /**
      * The constant US08_PERSON.
      */
-    public static final String US08_PERSON = "Child should be born after marriage of parents (and before their divorce)";
+    public static final String US08_PERSON = "Child [PersonId: %s, Name: %s]'s birth date [%s] before parents marriage date [%s] occurs in Family [%s]\n";
     /**
      * The constant US09_PERSON.
      */

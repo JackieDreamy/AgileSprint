@@ -60,6 +60,8 @@ public class DateUtils {
                 Date childDeathDate = child.getDeathDate();
                 Date husbandDeathDate = familyEntity.getFather().getDeathDate();
                 Date wifeDeathDate = familyEntity.getMother().getDeathDate();
+                Date marriedDate = familyEntity.getMarriedDate();
+                Date divorceDate = familyEntity.getDivorceDate();
                 switch (prefix) {
                     case ErrorCode.US01: {
                         if (lifeDateWithRange(childBirthDate, childDeathDate)) {
@@ -183,15 +185,11 @@ public class DateUtils {
      */
     public void parseUS04Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date marriageDate, Date divorceDate) {
         if (CommonUtils.isNotNull(marriageDate) && CommonUtils.isNotNull(divorceDate)) {
-            if (prefix.equals(ErrorCode.US04)) {
-                if (marriageDate.after(divorceDate)) {
-                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US04_PERSON, prefix, divorceDate, marriageDate, familyEntity.getIdentifier()));
-                } else if (divorceDate.before(marriageDate)) {
+            if (marriageDivorceDateWithRangeNotNull(marriageDate,divorceDate)) {
                     result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US04_PERSON, prefix, divorceDate, marriageDate, familyEntity.getIdentifier()));
                 }
             }
         }
-    }
 
     /**
      * Parse us 05 error.
