@@ -60,8 +60,6 @@ public class DateUtils {
                 Date childDeathDate = child.getDeathDate();
                 Date husbandDeathDate = familyEntity.getFather().getDeathDate();
                 Date wifeDeathDate = familyEntity.getMother().getDeathDate();
-                Date marriedDate = familyEntity.getMarriedDate();
-                Date divorceDate = familyEntity.getDivorceDate();
                 switch (prefix) {
                     case ErrorCode.US01: {
                         if (lifeDateWithRange(childBirthDate, childDeathDate)) {
