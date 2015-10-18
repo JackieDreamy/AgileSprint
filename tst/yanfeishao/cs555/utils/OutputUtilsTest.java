@@ -89,6 +89,14 @@ public class OutputUtilsTest extends TestCases {
         return expectedResult;
     }
 
+    private Set<String> expectedUS21Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, ErrorCode.US21, "@F9@", "husband", "female", "@P15@", "Darlene/Cook/", "F", "@P23@", "Silvia/Green/", "F"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, ErrorCode.US21, "@F4@", "husband", "female", "@P5@", "WilliamHenry/Hague/", "F", "@P6@", "Ursula/Braddock/", "F"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, ErrorCode.US21, "@F7@", "wife", "male", "@P12@", "EdwinBurton/Hague/", "M", "@P18@", "Barbara/Fritschi/", "M"));
+        return expectedResult;
+    }
+
     /**
      * Parse uS 01 case test.
      */
@@ -186,6 +194,16 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS16Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US16).toArray());
+    }
+
+    /**
+     * Parse us 21 case test.
+     */
+    @Test
+    public void parseUS21CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS21Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US21).toArray());
     }
 
 }

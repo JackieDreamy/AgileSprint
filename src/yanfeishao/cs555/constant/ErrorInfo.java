@@ -147,7 +147,7 @@ public class ErrorInfo {
     /**
      * The constant US21_PERSON.
      */
-    public static final String US21_PERSON = "The husband in a family should be male and wife in a family should be female, in family [%s %s is %s]";
+    public static final String US21_PERSON = "The husband in a family should be male and wife in a family should be female, in family [%s %s is %s], the husband is [PersonId: %s, Name: %s, Gender: %s] and the wife is [PersonId: %s, Name: %s, Gender: %s]";
     /**
      * The constant US22_PERSON.
      */
