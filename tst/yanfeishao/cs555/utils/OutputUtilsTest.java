@@ -53,6 +53,14 @@ public class OutputUtilsTest extends TestCases {
         return expectedResult;
     }
 
+    private Set<String> expectedUS10Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10_PERSON, ErrorCode.US10, "@F11@", "@P16@", "Inez/Youngster/", "-41", "@P25@", "EdwardMorris/Ockers/", "25", "Tue Dec 25 1928"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10_PERSON, ErrorCode.US10, "@F2@", "@P3@", "VernaMay/Youngster/", "13", "@P2@", "EdwinBurton/Hague/", "26", "Mon Jun 12 1933"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10_PERSON, ErrorCode.US10, "@F9@", "@P23@", "Silvia/Green/", "25", "@P15@", "Darlene/Cook/", "-45", "Wed Jun 10 1953"));
+        return expectedResult;
+    }
+
     private Set<String> expectedUS16Result() {
         Set<String> expectedResult = new HashSet<>();
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16_PERSON, ErrorCode.US16, "@P19@", "John/Elsaesser/", "@F12@", "Jakob/Elsasser/"));
@@ -115,6 +123,16 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS09Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US09).toArray());
+    }
+
+    /**
+     * Parse us 10 case test.
+     */
+    @Test
+    public void parseUS10CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS10Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US10).toArray());
     }
 
     /**
