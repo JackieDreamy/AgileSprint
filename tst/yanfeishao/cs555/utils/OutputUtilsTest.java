@@ -38,10 +38,21 @@ public class OutputUtilsTest extends TestCases {
         return expectedResult;
     }
 
+    private Set<String> expectedUS04Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US04_PERSON, ErrorCode.US04, "Tue Mar 15 00:00:00 EST 1921", "Tue Jun 20 00:00:00 EDT 1922", "@F8@"));
+        return expectedResult;
+    }
 
     private Set<String> expectedUS05Result() {
         Set<String> expectedResult = new HashSet<>();
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US05_PERSON, ErrorCode.US05, "@F10@", "Thu Nov 06 00:00:00 EST 1997", "@P28@", "KennethArvid/Lindfors/", "Sun Dec 10 00:00:00 EST 1995"));
+        return expectedResult;
+    }
+
+    private Set<String> expectedUS06Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US06_PERSON, ErrorCode.US06, "@P28@", "KennethArvid/Lindfors/", "Mon May 20 00:00:00 EDT 1935", "Sun Dec 10 00:00:00 EST 1995", "Wed May 09 00:00:00 EDT 2001", "@F10@"));
         return expectedResult;
     }
 
@@ -90,6 +101,15 @@ public class OutputUtilsTest extends TestCases {
     }
 
     /**
+     * Parse uS 04 case test.
+     */
+    @Test public void parseUS04CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS04Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US04).toArray());
+    }
+
+    /**
      * Parse uS 05 case test.
      */
     @Test
@@ -97,6 +117,16 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS05Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US05).toArray());
+    }
+
+    /**
+     * Parse uS 06 case test.
+     */
+    @Test
+    public void parseUS06CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS06Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US06).toArray());
     }
 
     /**
