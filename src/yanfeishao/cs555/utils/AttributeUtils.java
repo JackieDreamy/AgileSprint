@@ -2,6 +2,7 @@ package yanfeishao.cs555.utils;
 
 import yanfeishao.cs555.constant.ErrorInfo;
 import yanfeishao.cs555.constant.FormatterRegex;
+import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.entities.PersonEntity;
 import yanfeishao.cs555.enums.ParseEnum;
@@ -34,8 +35,21 @@ public class AttributeUtils {
         return splitName(child.getName())[1].equals(splitName(familyEntity.getFather().getName())[1]);
     }
 
+    private boolean isLegalMother(FamilyEntity familyEntity) {
+        return familyEntity.getMother().getSex().equalsIgnoreCase(KeywordsConstant.F);
+    }
+
+    private boolean isLegalFather(FamilyEntity familyEntity) {
+        return familyEntity.getFather().getSex().equalsIgnoreCase(KeywordsConstant.M);
+    }
+
     private boolean us16ParseCondition(FamilyEntity familyEntity, PersonEntity child) {
         return CommonUtils.isNotNull(child) && !isLegalLastName(child, familyEntity);
+    }
+
+    private boolean us21ParseCondition(FamilyEntity familyEntity) {
+        return CommonUtils.isNotNull(familyEntity.getMother()) && !isLegalMother(familyEntity) || CommonUtils.isNotNull(familyEntity.getFather()) && !isLegalFather
+                (familyEntity);
     }
 
     /**
@@ -54,5 +68,22 @@ public class AttributeUtils {
                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16_PERSON, prefix, child.getIdentifier(), child.getName(), familyEntity.getIdentifier(), familyEntity.getFather().getName()));
             }
         });
+    }
+
+    /**
+     * Parse us 21 error.
+     *
+     * @param result       the result
+     * @param prefix       the prefix
+     * @param familyEntity the family entity
+     */
+    public void parseUS21Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
+        if (us21ParseCondition(familyEntity)) {
+            if (CommonUtils.isNotNull(familyEntity.getMother()) && familyEntity.getMother().getSex().equalsIgnoreCase(KeywordsConstant.M)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, prefix, familyEntity.getIdentifier(), KeywordsConstant.Wife, KeywordsConstant.Male, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), familyEntity.getFather().getSex(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), familyEntity.getMother().getSex()));
+            } else if (CommonUtils.isNotNull(familyEntity.getFather()) && familyEntity.getFather().getSex().equalsIgnoreCase(KeywordsConstant.F)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, prefix, familyEntity.getIdentifier(), KeywordsConstant.Husband, KeywordsConstant.Female, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), familyEntity.getFather().getSex(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), familyEntity.getMother().getSex()));
+            }
+        }
     }
 }

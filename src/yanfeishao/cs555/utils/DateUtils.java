@@ -7,6 +7,7 @@ import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.enums.DateType;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
@@ -89,6 +90,10 @@ public class DateUtils {
         return (CommonUtils.isNotNull(childBirthDate) && CommonUtils.isNotNull(childDeathDate)) && (birthDateWithRange(childDeathDate, childBirthDate));
     }
 
+    private boolean us10ParseCondition(LocalDate husbandBirthDate, LocalDate wifeBirthDate, LocalDate marriageDate) {
+        return (CommonUtils.isNotNull(husbandBirthDate) && CommonUtils.isNotNull(marriageDate) && CommonUtils.getAge(husbandBirthDate, marriageDate) < 14) || (CommonUtils.isNotNull(wifeBirthDate) && CommonUtils.isNotNull(marriageDate) && CommonUtils.getAge(wifeBirthDate, marriageDate) < 14);
+    }
+
     private void parseChildDateError(Set<String> result, FamilyEntity familyEntity, String prefix) {
         familyEntity.getChildList().forEach(child -> {
             if (CommonUtils.isNotNull(child)) {
@@ -102,14 +107,18 @@ public class DateUtils {
                 Date parentDivorceDate = familyEntity.getDivorceDate();
                 switch (prefix) {
                     case ErrorCode.US01: {
+                        Date currentDate = CommonUtils.getCurrentDate();
                         if (lifeDateWithRange(childBirthDate, childDeathDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01_FAMILY, prefix, familyEntity.getIdentifier()));
+                            if (CommonUtils.isNotNull(childBirthDate) && childBirthDate.after(currentDate))
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), child.getIdentifier(), child.getName(), KeywordsConstant.Birth, CommonUtils.getFormattedDate(childBirthDate)));
+                            else if (CommonUtils.isNotNull(childDeathDate) && childDeathDate.after(CommonUtils.getCurrentDate()))
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), child.getIdentifier(), child.getName(), KeywordsConstant.Death, CommonUtils.getFormattedDate(childDeathDate)));
                         }
                     }
                     break;
                     case ErrorCode.US03: {
                         if (us03ChildParseCondition(childBirthDate, childDeathDate)) {
-                            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US03_FAMILY, prefix, familyEntity.getIdentifier()));
+                            result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US03_PERSON, prefix, familyEntity.getIdentifier(), child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), CommonUtils.getFormattedDate(childDeathDate), child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate)));
                         }
                     }
                     break;
@@ -125,9 +134,9 @@ public class DateUtils {
                             } else if (CommonUtils.isNotNull(husbandDeathDate) && (compareDate(childBirthDate, husbandDeathDate, DateType.MONTH) >= 9)) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09_PERSON, prefix, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier(), husbandDeathDate));
                             }
-                            if (CommonUtils.isNotNull(wifeBirthDate) && (compareDate(childBirthDate, wifeBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.MOTHERAGE, 60))) {
+                            if (CommonUtils.isNotNull(wifeBirthDate) && (compareDate(childBirthDate, wifeBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.MOTHERAGE))) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, prefix, KeywordsConstant.MOTHER, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), wifeBirthDate, KeywordsConstant.MOTHERAGE, KeywordsConstant.HER, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier()));
-                            } else if (CommonUtils.isNotNull(husbandBirthDate) && (compareDate(childBirthDate, husbandBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.FATHER, 80))) {
+                            } else if (CommonUtils.isNotNull(husbandBirthDate) && (compareDate(childBirthDate, husbandBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.FATHERAGE))) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), husbandBirthDate, KeywordsConstant.FATHER, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier()));
                             }
                         }
@@ -162,7 +171,20 @@ public class DateUtils {
      */
     public void parseUS01Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date marriageDate, Date divorceDate, Date husbandBirthDate, Date wifeBirthDate, Date husbandDeathDate, Date wifeDeathDate) {
         if (us01ParseCondition(husbandBirthDate, husbandDeathDate, wifeBirthDate, wifeDeathDate, marriageDate, divorceDate)) {
-            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US01_FAMILY, prefix, familyEntity.getIdentifier()));
+            Date currentDate = CommonUtils.getCurrentDate();
+            if (CommonUtils.isNotNull(husbandBirthDate) && husbandBirthDate.after(currentDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), KeywordsConstant.Birth, CommonUtils.getFormattedDate(husbandBirthDate)));
+            } else if (CommonUtils.isNotNull(husbandDeathDate) && husbandDeathDate.after(currentDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), KeywordsConstant.Death, CommonUtils.getFormattedDate(husbandDeathDate)));
+            } else if (CommonUtils.isNotNull(wifeBirthDate) && wifeBirthDate.after(currentDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), KeywordsConstant.Birth, CommonUtils.getFormattedDate(wifeBirthDate)));
+            } else if (CommonUtils.isNotNull(wifeDeathDate) && wifeDeathDate.after(currentDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), KeywordsConstant.Death, CommonUtils.getFormattedDate(wifeDeathDate)));
+            } else if (CommonUtils.isNotNull(marriageDate) && marriageDate.after(currentDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier() + " & " + familyEntity.getMother().getIdentifier(), familyEntity.getFather().getName() + " & " + familyEntity.getMother().getName(), KeywordsConstant.Marriage, CommonUtils.getFormattedDate(marriageDate)));
+            } else if (CommonUtils.isNotNull(divorceDate) && divorceDate.after(currentDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US01_PERSON, prefix, CommonUtils.getFormattedDate(currentDate), familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier() + " & " + familyEntity.getMother().getIdentifier(), familyEntity.getFather().getName() + " & " + familyEntity.getMother().getName(), KeywordsConstant.Divorce, CommonUtils.getFormattedDate(divorceDate)));
+            }
         }
         parseChildDateError(result, familyEntity, prefix);
     }
@@ -213,7 +235,11 @@ public class DateUtils {
      */
     public void parseUS03Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date husbandBirthDate, Date husbandDeathDate, Date wifeBirthDate, Date wifeDeathDate) {
         if (us03ParseCondition(husbandBirthDate, husbandDeathDate, wifeBirthDate, wifeDeathDate)) {
-            result.add(String.format(FormatterRegex.ERROR_FAMILY + ErrorInfo.US03_FAMILY, prefix, familyEntity.getIdentifier()));
+            if (husbandBirthDate.after(husbandDeathDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US03_PERSON, prefix, familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(husbandBirthDate), CommonUtils.getFormattedDate(husbandDeathDate), familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(husbandBirthDate)));
+            } else if (wifeBirthDate.after(wifeDeathDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US03_PERSON, prefix, familyEntity.getIdentifier(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(wifeBirthDate), CommonUtils.getFormattedDate(wifeDeathDate), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(wifeBirthDate)));
+            }
         }
         parseChildDateError(result, familyEntity, prefix);
     }
@@ -309,5 +335,35 @@ public class DateUtils {
      */
     public void parseUS08US09US12Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         parseChildDateError(result, familyEntity, prefix);
+    }
+
+    /**
+     * Parse us 10 error.
+     *
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param husbandBirthDate the husband birth date
+     * @param wifeBirthDate    the wife birth date
+     * @param marriageDate     the marriage date
+     */
+    public void parseUS10Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date husbandBirthDate, Date wifeBirthDate, Date marriageDate) {
+        LocalDate husbandLocalBirthDate = null;
+        LocalDate wifeLocalBirthDate = null;
+        LocalDate marriageLocalDate = null;
+        if (CommonUtils.isNotNull(familyEntity.getFather().getBirthDate())) {
+            husbandLocalBirthDate = CommonUtils.getLocalDate(familyEntity.getFather().getBirthDate());
+        }
+        if (CommonUtils.isNotNull(familyEntity.getMother().getBirthDate())) {
+            wifeLocalBirthDate = CommonUtils.getLocalDate(familyEntity.getMother().getBirthDate());
+        }
+        if (CommonUtils.isNotNull(familyEntity.getMarriedDate())) {
+            marriageLocalDate = CommonUtils.getLocalDate(familyEntity.getMarriedDate());
+        }
+        if (us10ParseCondition(husbandLocalBirthDate, wifeLocalBirthDate, marriageLocalDate)) {
+            if (CommonUtils.isNotNull(husbandLocalBirthDate) && CommonUtils.isNotNull(wifeLocalBirthDate) && CommonUtils.isNotNull(marriageLocalDate)) {
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10_PERSON, prefix, CommonUtils.getFormattedDate(marriageLocalDate), familyEntity.getIdentifier(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getAge(wifeLocalBirthDate, marriageLocalDate), familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getAge(husbandLocalBirthDate, marriageLocalDate)));
+            }
+        }
     }
 }

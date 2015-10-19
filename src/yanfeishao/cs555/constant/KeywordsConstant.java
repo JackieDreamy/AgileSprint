@@ -17,14 +17,39 @@ public class KeywordsConstant {
      */
     public static final String SEX = "SEX";
     /**
+     * The constant Male for Male sex.
+     */
+    public static final String Male = "Male";
+    /**
+     * The constant M for Male sex.
+     */
+    public static final String M = "M";
+    /**
+     * The constant Female for Female sex.
+     */
+    public static final String Female = "Female";
+    /**
+     * The constant F for Female sex.
+     */
+    public static final String F = "F";
+    /**
      * The constant BIRT.
      */
     public static final String BIRT = "BIRT";
+    /**
+     * The constant Birth.
+     */
+    public static final String Birth = "Birth";
     /**
      * The constant DEAT.
      */
     public static final String DEAT = "DEAT";
     /**
+     * The constant DEAT.
+     */
+    public static final String Death = "Death";
+    /**
+     /*
      * The constant FAMC.
      */
     public static final String FAMC = "FAMC";
@@ -41,13 +66,25 @@ public class KeywordsConstant {
      */
     public static final String MARR = "MARR";
     /**
+     * The constant Marriage.
+     */
+    public static final String Marriage = "Marriage";
+    /**
      * The constant HUSB.
      */
     public static final String HUSB = "HUSB";
     /**
+     * The constant Husband.
+     */
+    public static final String Husband = "Husband";
+    /**
      * The constant WIFE.
      */
     public static final String WIFE = "WIFE";
+    /**
+     * The constant Wife.
+     */
+    public static final String Wife = "Wife";
     /**
      * The constant CHIL.
      */
@@ -56,6 +93,10 @@ public class KeywordsConstant {
      * The constant DIV.
      */
     public static final String DIV = "DIV";
+    /**
+     * The constant Divorce.
+     */
+    public static final String Divorce = "Divorce";
     /**
      * The constant DATE.
      */
@@ -119,11 +160,11 @@ public class KeywordsConstant {
     /**
      * The constant MOTHERAGE.
      */
-    public static final String MOTHERAGE= "60";
+    public static final String MOTHERAGE = "60";
     /**
      * The constant FATRGERAGE.
      */
-    public static final String FATRGERAGE = "80";
+    public static final String FATHERAGE = "80";
     /**
      * The constant ERROR.
      */

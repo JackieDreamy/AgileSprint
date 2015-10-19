@@ -39,7 +39,7 @@ public class ErrorInfo {
     /**
      * The constant US10_FAMILY.
      */
-    public static final String US10_FAMILY = "Marriage should be at least 14 years after birth of both spouses";
+    public static final String US10_FAMILY = "Marriage should be at least 14 years after birth of both spouses, family [%s] wife age [%s] and husband age [%s] at marriage";
     /**
      * The constant US12_FAMILY.
      */
@@ -51,7 +51,7 @@ public class ErrorInfo {
     /**
      * The constant US21_FAMILY.
      */
-    public static final String US21_FAMILY = "Husband in family should be male and wife in family should be female";
+    public static final String US21_FAMILY = "Husband in family [%s] should be male [%s] and wife in family should be female [%s]";
     /**
      * The constant US22_FAMILY.
      */
@@ -103,7 +103,7 @@ public class ErrorInfo {
     /**
      * The constant US01_PERSON.
      */
-    public static final String US01_PERSON = "Dates(birth, marriage, divorce, death) of family [%s] should not be after the current date\n";
+    public static final String US01_PERSON = "Dates(birth, marriage, divorce, death) of member should not be after the current date [Date: %s] for [FamilyId: %s PersonId: %s Name: %s Date Type: %s Date: %s] \n";
     /**
      * The constant US02_PERSON.
      */
@@ -111,7 +111,7 @@ public class ErrorInfo {
     /**
      * The constant US03_PERSON.
      */
-    public static final String US03_PERSON = "Birth of one of family [%s] member date should occur before death of an individual\n";
+    public static final String US03_PERSON = "Birth of one of member [FamilyId: %s PersonId: %s Name: %s BirthDate: %s]  date should occur before death [%s] of an individual [Person Id: %s Name: %s BirthDate: %s]\n";
     /**
      * The constant US04_PERSON.
      */
@@ -135,7 +135,7 @@ public class ErrorInfo {
     /**
      * The constant US10_PERSON.
      */
-    public static final String US10_PERSON = "Marriage should be at least 14 years after birth of both spouses";
+    public static final String US10_PERSON = "Marriage should be at least fourteen years after birth of both spouses at marriage [Marriage Date: %s] Family [%s] Wife [PersonId: %s Name: %s Age %s] and Husband [PersonId: %s Name: %s Age %s]\n";
     /**
      * The constant US12_PERSON.
      */
@@ -147,7 +147,7 @@ public class ErrorInfo {
     /**
      * The constant US21_PERSON.
      */
-    public static final String US21_PERSON = "Husband in family should be male and wife in family should be female";
+    public static final String US21_PERSON = "The husband in a family should be male and wife in a family should be female, in family [%s %s is %s], the husband is [PersonId: %s, Name: %s, Gender: %s] and the wife is [PersonId: %s, Name: %s, Gender: %s]";
     /**
      * The constant US22_PERSON.
      */
