@@ -61,6 +61,10 @@ public class ErrorUtils {
                     dateUtils.parseUS06Error(result, prefix, familyEntity, husbandBirthDate, wifeBirthDate, divorceDate);
                 }
                 break;
+                case ErrorCode.US10: {
+                    dateUtils.parseUS10Error(result, prefix, familyEntity, husbandBirthDate, wifeBirthDate, divorceDate);
+                }
+                break;
                 case ErrorCode.US08US09US12: {
                     dateUtils.parseUS08US09US12Error(result, prefix, familyEntity);
                 }

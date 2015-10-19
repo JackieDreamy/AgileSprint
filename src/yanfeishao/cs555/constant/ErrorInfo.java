@@ -103,7 +103,7 @@ public class ErrorInfo {
     /**
      * The constant US01_PERSON.
      */
-    public static final String US01_PERSON = "Dates(birth, marriage, divorce, death) of member [FamilyId: %s PersonId: %s Name: %s Date Type: %s Date: %s] should not be after the current date [Date: %s]\n";
+    public static final String US01_PERSON = "Dates(birth, marriage, divorce, death) of member should not be after the current date [Date: %s] for [FamilyId: %s PersonId: %s Name: %s Date Type: %s Date: %s] \n";
     /**
      * The constant US02_PERSON.
      */
@@ -135,7 +135,7 @@ public class ErrorInfo {
     /**
      * The constant US10_PERSON.
      */
-    public static final String US10_PERSON = "Marriage should be at least 14 years after birth of both spouses, family [%s] wife [PersonId: %s Name: %s age %s] and husband [PersonId: %s Name: %s age %s] at marriage [Date: %s]\n";
+    public static final String US10_PERSON = "Marriage should be at least fourteen years after birth of both spouses at marriage [Marriage Date: %s] Family [%s] Wife [PersonId: %s Name: %s Age %s] and Husband [PersonId: %s Name: %s Age %s]\n";
     /**
      * The constant US12_PERSON.
      */

@@ -83,6 +83,7 @@ public class ParserUtils {
         outputUtils.outputError(simpleDBUtils, ErrorCode.US04);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US05);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US06);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US10);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US08US09US12);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US16);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US21);

@@ -160,11 +160,11 @@ public class KeywordsConstant {
     /**
      * The constant MOTHERAGE.
      */
-    public static final String MOTHERAGE= "60";
+    public static final String MOTHERAGE = "60";
     /**
      * The constant FATRGERAGE.
      */
-    public static final String FATRGERAGE = "80";
+    public static final String FATHERAGE = "80";
     /**
      * The constant ERROR.
      */
