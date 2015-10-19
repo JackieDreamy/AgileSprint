@@ -125,9 +125,9 @@ public class DateUtils {
                             } else if (CommonUtils.isNotNull(husbandDeathDate) && (compareDate(childBirthDate, husbandDeathDate, DateType.MONTH) >= 9)) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09_PERSON, prefix, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier(), husbandDeathDate));
                             }
-                            if (CommonUtils.isNotNull(wifeBirthDate) && (compareDate(childBirthDate, wifeBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.MOTHERAGE, 60))) {
+                            if (CommonUtils.isNotNull(wifeBirthDate) && (compareDate(childBirthDate, wifeBirthDate, DateType.YEAR) >= 60)) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, prefix, KeywordsConstant.MOTHER, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), wifeBirthDate, KeywordsConstant.MOTHERAGE, KeywordsConstant.HER, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier()));
-                            } else if (CommonUtils.isNotNull(husbandBirthDate) && (compareDate(childBirthDate, husbandBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.FATHER, 80))) {
+                            } else if (CommonUtils.isNotNull(husbandBirthDate) && (compareDate(childBirthDate, husbandBirthDate, DateType.YEAR) >= 80)) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), husbandBirthDate, KeywordsConstant.FATHER, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier()));
                             }
                         }
