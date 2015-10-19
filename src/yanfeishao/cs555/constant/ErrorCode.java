@@ -29,21 +29,13 @@ public class ErrorCode {
      */
     public static final String US06 = "US06";
     /**
-     * The constant US08.
+     * The constant US08, US09, US12.
      */
     public static final String US08US09US12 = "US08US09US12";
-    /**
-     * The constant US09.
-     */
-    public static final String US09 = "US09";
     /**
      * The constant US10.
      */
     public static final String US10 = "US10";
-    /**
-     * The constant US12.
-     */
-    public static final String US12 = "US12";
     /**
      * The constant US16.
      */
