@@ -65,7 +65,7 @@ public class AttributeUtils {
     public void parseUS16Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         familyEntity.getChildList().forEach(child -> {
             if (us16ParseCondition(familyEntity, child)) {
-                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16_PERSON, prefix, child.getIdentifier(), child.getName(), familyEntity.getIdentifier(), familyEntity.getFather().getName()));
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US16, prefix, child.getIdentifier(), child.getName(), familyEntity.getIdentifier(), familyEntity.getFather().getName()));
             }
         });
     }
@@ -73,16 +73,19 @@ public class AttributeUtils {
     /**
      * Parse us 21 error.
      *
-     * @param result       the result
-     * @param prefix       the prefix
-     * @param familyEntity the family entity
+     * @param result
+     *         the result
+     * @param prefix
+     *         the prefix
+     * @param familyEntity
+     *         the family entity
      */
     public void parseUS21Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         if (us21ParseCondition(familyEntity)) {
             if (CommonUtils.isNotNull(familyEntity.getMother()) && familyEntity.getMother().getSex().equalsIgnoreCase(KeywordsConstant.M)) {
-                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, prefix, familyEntity.getIdentifier(), KeywordsConstant.Wife, KeywordsConstant.Male, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), familyEntity.getFather().getSex(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), familyEntity.getMother().getSex()));
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, prefix, familyEntity.getIdentifier(), KeywordsConstant.Wife, KeywordsConstant.Male, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), familyEntity.getFather().getSex(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), familyEntity.getMother().getSex()));
             } else if (CommonUtils.isNotNull(familyEntity.getFather()) && familyEntity.getFather().getSex().equalsIgnoreCase(KeywordsConstant.F)) {
-                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21_PERSON, prefix, familyEntity.getIdentifier(), KeywordsConstant.Husband, KeywordsConstant.Female, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), familyEntity.getFather().getSex(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), familyEntity.getMother().getSex()));
+                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, prefix, familyEntity.getIdentifier(), KeywordsConstant.Husband, KeywordsConstant.Female, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), familyEntity.getFather().getSex(), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), familyEntity.getMother().getSex()));
             }
         }
     }

@@ -23,13 +23,13 @@ public class FormatterRegex {
     /**
      * The constant ERROR_TITLE.
      */
-    public static final String ERROR_TITLE = "%s%s: ";
+    public static final String ERROR_TITLE = "%s%s ";
     /**
-     * The constant ERROR_FAMILY.
+     * The constant DATE_FORMAT.
      */
-    public static final String ERROR_FAMILY = "CODE %s: \nCATEGORY: FAMILY\nREASON: ";
+    public static final String DATE_FORMAT = "MMM-dd-yyyy";
     /**
      * The constant ERROR_PERSON.
      */
-    public static final String ERROR_PERSON = "CODE %s: \nCATEGORY: PERSON\nREASON: ";
+    public static final String ERROR_PERSON = "CODE %s: \nCATEGORY: ERROR\nREASON: ";
 }

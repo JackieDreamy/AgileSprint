@@ -31,7 +31,7 @@ public class ErrorCode {
     /**
      * The constant US08.
      */
-    public static final String US08US09US12 = "US08US09US12";
+    public static final String US08 = "US08";
     /**
      * The constant US09.
      */
@@ -99,5 +99,5 @@ public class ErrorCode {
     /**
      * The constant US42.
      */
-    public static final String US42 = "CODE US42";
+    public static final String US42 = "CODE US42\nCATEGORY: ERROR";
 }

@@ -62,12 +62,15 @@ public class ErrorUtils {
                 }
                 break;
                 case ErrorCode.US10: {
-                    dateUtils.parseUS10Error(result, prefix, familyEntity, husbandBirthDate, wifeBirthDate, divorceDate);
+                    dateUtils.parseUS10Error(result, prefix, familyEntity, husbandBirthDate, wifeBirthDate, marriageDate);
                 }
                 break;
-                case ErrorCode.US08US09US12: {
+                case ErrorCode.US08:
+                case ErrorCode.US09:
+                case ErrorCode.US12: {
                     dateUtils.parseUS08US09US12Error(result, prefix, familyEntity);
                 }
+                break;
             }
         });
     }
@@ -119,8 +122,9 @@ public class ErrorUtils {
      */
     public static void parseError(StringBuffer currentDate) {
         LogUtils.log(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US42));
-        String message = String.format(ErrorInfo.PARSE_ERROR, currentDate.toString());
+        String message = String.format(ErrorInfo.US42, currentDate.toString());
         LogUtils.error(message);
+        LogUtils.line();
     }
 
     /**

@@ -1,5 +1,8 @@
 package yanfeishao.cs555.utils;
 
+import yanfeishao.cs555.constant.FormatterRegex;
+import yanfeishao.cs555.enums.DateType;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -34,9 +37,12 @@ public class CommonUtils {
     /**
      * Gets LocalDate from Date.
      *
-     * @return LocalDate
+     * @param originalDate
+     *         the original date
+     *
+     * @return LocalDate local date
      */
-    public static LocalDate getLocalDate(Date originalDate) {
+    private static LocalDate getLocalDate(Date originalDate) {
         Instant instant = Instant.ofEpochMilli(originalDate.getTime());
         LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         return localDate;
@@ -45,28 +51,39 @@ public class CommonUtils {
     /**
      * Gets Formatted Date String DOW Short Month Day Year from Date.
      *
-     * @return String
+     * @param originalDate
+     *         the original date
+     *
+     * @return String formatted date
      */
     public static String getFormattedDate(Date originalDate) {
         Instant instant = Instant.ofEpochMilli(originalDate.getTime());
-        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate().format(DateTimeFormatter.ofPattern("EEE MMM dd yyyy"));
+        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate().format(DateTimeFormatter.ofPattern(FormatterRegex.DATE_FORMAT.toString()));
     }
 
     /**
-     * Formats Local Date to DOW Short Month Day Year.
+     * Gets date diff in years, months, days based on the date type.
      *
-     * @return String of Formatted Date
-     */
-    public static String getFormattedDate(LocalDate unformattedDate) {
-        return unformattedDate.format(DateTimeFormatter.ofPattern("EEE MMM dd yyyy"));
-    }
-
-    /**
-     * Gets age in years.
+     * @param birthDate
+     *         the birth date
+     * @param compareDate
+     *         the compare date
+     * @param dateType
+     *         the date type
      *
-     * @return age at given time
+     * @return diff at given time and type
      */
-    public static int getAge(LocalDate birthDate, LocalDate compareDate) {
-        return Period.between(birthDate, compareDate).getYears();
+    public static int compareDateDiff(Date birthDate, Date compareDate, DateType dateType) {
+        LocalDate birthLocalDate = getLocalDate(birthDate);
+        LocalDate compareLocalDate = getLocalDate(compareDate);
+        switch (dateType) {
+            case DAY:
+                return Period.between(birthLocalDate, compareLocalDate).getDays();
+            case MONTH:
+                return Period.between(birthLocalDate, compareLocalDate).getMonths();
+            case YEAR:
+                return Period.between(birthLocalDate, compareLocalDate).getYears();
+        }
+        return 0;
     }
 }
