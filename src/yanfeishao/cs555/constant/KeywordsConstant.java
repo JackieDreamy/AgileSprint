@@ -85,6 +85,46 @@ public class KeywordsConstant {
      */
     public static final String WIFE_NAME = "WIFE_NAME";
     /**
+     * The constant MOTHER.
+     */
+    public static final String MOTHER = "Mother";
+    /**
+     * The constant FATHER.
+     */
+    public static final String FATHER = "Father";
+    /**
+     * The constant HER.
+     */
+    public static final String HER = "her";
+    /**
+     * The constant HIS.
+     */
+    public static final String HIS = "his";
+    /**
+     * The constant MARRIAGE.
+     */
+    public static final String MARRIAGE = "marriage";
+    /**
+     * The constant DIVORCE.
+     */
+    public static final String DIVORCE = "divorce";
+    /**
+     * The constant BEFORE.
+     */
+    public static final String BEFORE = "before";
+    /**
+     * The constant AFTER.
+     */
+    public static final String AFTER = "after";
+    /**
+     * The constant MOTHERAGE.
+     */
+    public static final String MOTHERAGE= "60";
+    /**
+     * The constant FATRGERAGE.
+     */
+    public static final String FATRGERAGE = "80";
+    /**
      * The constant ERROR.
      */
     public static final String ERROR = "[ERROR] ";

@@ -3,6 +3,7 @@ package yanfeishao.cs555.utils;
 import yanfeishao.cs555.constant.ErrorCode;
 import yanfeishao.cs555.constant.ErrorInfo;
 import yanfeishao.cs555.constant.FormatterRegex;
+import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.enums.DateType;
 
@@ -95,6 +96,10 @@ public class DateUtils {
                 Date childDeathDate = child.getDeathDate();
                 Date husbandDeathDate = familyEntity.getFather().getDeathDate();
                 Date wifeDeathDate = familyEntity.getMother().getDeathDate();
+                Date husbandBirthDate = familyEntity.getFather().getBirthDate();
+                Date wifeBirthDate = familyEntity.getMother().getBirthDate();
+                Date parentMarriedDate = familyEntity.getMarriedDate();
+                Date parentDivorceDate = familyEntity.getDivorceDate();
                 switch (prefix) {
                     case ErrorCode.US01: {
                         if (lifeDateWithRange(childBirthDate, childDeathDate)) {
@@ -108,14 +113,25 @@ public class DateUtils {
                         }
                     }
                     break;
-                    case ErrorCode.US09: {
+                    case ErrorCode.US08US09US12: {
                         if (CommonUtils.isNotNull(childBirthDate)) {
+                            if (CommonUtils.isNotNull(parentMarriedDate) && parentMarriedDate.after(childBirthDate)) {
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, prefix, child.getIdentifier(), child.getName(), childBirthDate, KeywordsConstant.BEFORE, KeywordsConstant.MARRIAGE, familyEntity.getMarriedDate(), familyEntity.getIdentifier()));
+                            } else if (CommonUtils.isNotNull(parentDivorceDate) && parentDivorceDate.before(childBirthDate)) {
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08_PERSON, prefix, child.getIdentifier(), child.getName(), childBirthDate, KeywordsConstant.AFTER, KeywordsConstant.DIVORCE, familyEntity.getDivorceDate(), familyEntity.getIdentifier()));
+                            }
                             if (CommonUtils.isNotNull(wifeDeathDate) && birthDateWithRange(wifeDeathDate, childBirthDate)) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09_PERSON, prefix, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier(), familyEntity.getMother().getIdentifier(), wifeDeathDate));
                             } else if (CommonUtils.isNotNull(husbandDeathDate) && (compareDate(childBirthDate, husbandDeathDate, DateType.MONTH) >= 9)) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09_PERSON, prefix, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier(), familyEntity.getFather().getIdentifier(), husbandDeathDate));
                             }
+                            if (CommonUtils.isNotNull(wifeBirthDate) && (compareDate(childBirthDate, wifeBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.MOTHERAGE, 60))) {
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, prefix, KeywordsConstant.MOTHER, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), wifeBirthDate, KeywordsConstant.MOTHERAGE, KeywordsConstant.HER, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier()));
+                            } else if (CommonUtils.isNotNull(husbandBirthDate) && (compareDate(childBirthDate, husbandBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.FATHER, 80))) {
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12_PERSON, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), husbandBirthDate, KeywordsConstant.FATHER, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), childBirthDate, familyEntity.getIdentifier()));
+                            }
                         }
+
                     }
                 }
             }
@@ -282,7 +298,7 @@ public class DateUtils {
     }
 
     /**
-     * Parse us 09 error.
+     * Parse us 08, 09, 12 error.
      *
      * @param result
      *         the result
@@ -291,7 +307,7 @@ public class DateUtils {
      * @param familyEntity
      *         the family entity
      */
-    public void parseUS09Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
+    public void parseUS08US09US12Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         parseChildDateError(result, familyEntity, prefix);
     }
 }
