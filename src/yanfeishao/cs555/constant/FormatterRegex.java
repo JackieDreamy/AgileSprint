@@ -32,4 +32,8 @@ public class FormatterRegex {
      * The constant ERROR_PERSON.
      */
     public static final String ERROR_PERSON = "CODE %s: \nCATEGORY: ERROR\nREASON: ";
+    /**
+     * The constant INFO_PERSON.
+     */
+    public static final String INFO_PERSON = "CODE %s: \nCATEGORY: INFO\nREASON: ";
 }

@@ -224,5 +224,25 @@ public class OutputUtilsTest extends TestCases {
         Assert.assertArrayEquals(expectedUS21Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US21).toArray());
     }
 
+    /**
+     * Parse us 29 case test.
+     */
+    @Test
+    public void parseUS29CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertEquals(US29_EXPECTED_SIZE, outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US29).size());
+    }
+
+    /**
+     * Parse us 30 case test.
+     */
+    @Test
+    public void parseUS30CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertEquals(US30_EXPECTED_SIZE, outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US30).size());
+    }
+
 }
 

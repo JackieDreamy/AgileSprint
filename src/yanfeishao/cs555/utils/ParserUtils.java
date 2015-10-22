@@ -60,6 +60,7 @@ public class ParserUtils {
             }
             gedReader.close();
             outputResult();
+            outputSpecialResult();
             outputError();
             return simpleDBUtils;
         } catch (FileNotFoundException fnfe) {
@@ -69,6 +70,11 @@ public class ParserUtils {
             ErrorUtils.readGEDError(ioe);
             return null;
         }
+    }
+
+    private void outputSpecialResult() {
+        outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US29);
+        outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US30);
     }
 
     private void outputResult() {

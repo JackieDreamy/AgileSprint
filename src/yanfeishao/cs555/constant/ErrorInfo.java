@@ -31,11 +31,11 @@ public class ErrorInfo {
     /**
      * The constant US08.
      */
-    public static final String US08 = "Child [PersonId: %s, Name: %s]'s birth date [%s] %s parents %s date [%s] occurs in Family [%s]\n";
+    public static final String US08 = "Child [PersonId: %s Name: %s]'s birth date [%s] %s parents %s date [%s] occurs in Family [%s]\n";
     /**
      * The constant US09.
      */
-    public static final String US09 = "Child [PersonId: %s, Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [%s's deathDate: %s]\n";
+    public static final String US09 = "Child [PersonId: %s Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [%s's deathDate: %s]\n";
     /**
      * The constant US10.
      */
@@ -43,11 +43,11 @@ public class ErrorInfo {
     /**
      * The constant US12.
      */
-    public static final String US12 = "%s [PersonId: %s, Name: %s, Birth Date: %s]'s age is more than %s years older than %s child [PersonId: %s, Name: %s, Birth Date: %s] in Family %s \n";
+    public static final String US12 = "%s [PersonId: %s Name: %s Birth Date: %s]'s age is more than %s years older than %s child [PersonId: %s Name: %s Birth Date: %s] in Family %s \n";
     /**
      * The constant US16.
      */
-    public static final String US16 = "Male members [PersonId: %s, Name: %s] of a family [%s] have not the same last name [%s]\n";
+    public static final String US16 = "Male members [PersonId: %s Name: %s] of a family [%s] have not the same last name [%s]\n";
     /**
      * The constant US21.
      */
@@ -63,11 +63,11 @@ public class ErrorInfo {
     /**
      * The constant US29.
      */
-    public static final String US29 = "List all deceased individuals in a GEDCOM file";
+    public static final String US29 = "The individual [PersonId: %s Name: %s] has already deceased on [%s]\n";
     /**
      * The constant US30.
      */
-    public static final String US30 = "List all living married people in a GEDCOM file";
+    public static final String US30 = "The individual [PersonId: %s Name: %s] has already married on [%s] with people [PersonId: %s Name: %s]\n";
     /**
      * The constant US31.
      */
