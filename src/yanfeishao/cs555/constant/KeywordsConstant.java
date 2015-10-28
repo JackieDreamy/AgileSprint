@@ -166,6 +166,14 @@ public class KeywordsConstant {
      */
     public static final String FATHERAGE = "80";
     /**
+     * The constant ADULT.
+     */
+    public static final String ADULT = "18";
+    /**
+     * The constant MARRIAGEAGE.
+     */
+    public static final String MARRIAGEAGE = "30";
+    /**
      * The constant ERROR.
      */
     public static final String ERROR = "[ERROR] ";

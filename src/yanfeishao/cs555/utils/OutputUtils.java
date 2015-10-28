@@ -6,10 +6,9 @@ import yanfeishao.cs555.constant.FormatterRegex;
 import yanfeishao.cs555.constant.KeywordsConstant;
 import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.entities.PersonEntity;
+import yanfeishao.cs555.enums.DateType;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Xiaonan Zhang on 9/18/15.
@@ -113,6 +112,47 @@ public class OutputUtils {
         }
     }
 
+    private void parseUS31Condition(FamilyEntity familyEntity, Set<String> results, ArrayList<String> UnmarriedIndividuals) {
+        familyEntity.getChildList().forEach(child -> {
+            if (CommonUtils.isNotNull(child) && UnmarriedIndividuals.contains(child.getIdentifier()) && (CommonUtils.compareDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate(), DateType.YEAR) > Integer.parseInt(KeywordsConstant.MARRIAGEAGE))) {
+                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US31, ErrorCode.US31, child.getIdentifier(), child.getName(), CommonUtils.compareDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate(), DateType.YEAR)));
+            }
+        });
+    }
+
+    private void parseUS33Condition(FamilyEntity familyEntity, Set<String> results) {
+        if (CommonUtils.isNotNull(familyEntity.getFather()) && CommonUtils.isNotNull(familyEntity.getFather().getDeathDate()) && CommonUtils.isNotNull(familyEntity.getMother()) && CommonUtils.isNotNull(familyEntity.getMother().getDeathDate())) {
+            Date orphanDate;
+            if (familyEntity.getFather().getDeathDate().after(familyEntity.getMother().getDeathDate())) {
+                orphanDate = familyEntity.getFather().getDeathDate();
+            } else {
+                orphanDate = familyEntity.getMother().getDeathDate();
+            }
+            familyEntity.getChildList().forEach(child -> {
+                if (CommonUtils.isNotNull(child) && CommonUtils.isNotNull(child.getBirthDate()) && (CommonUtils.compareDateDiff(child.getBirthDate(), orphanDate, DateType.YEAR) < Integer.parseInt(KeywordsConstant.ADULT))) {
+                    results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US33, ErrorCode.US33, child.getIdentifier(), child.getName(), CommonUtils.compareDateDiff(child.getBirthDate(), orphanDate, DateType.YEAR)));
+                }
+            });
+        }
+    }
+
+    private ArrayList<String> GetAllUnMarriedIndividuals(SimpleDBUtils simpleDBUtils) {
+        ArrayList<String> children = new ArrayList<String>();
+        simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
+            if (children.contains(familyEntity.getFather().getIdentifier()))
+                children.remove(familyEntity.getFather().getIdentifier());
+            if (children.contains(familyEntity.getMother().getIdentifier()))
+                children.remove(familyEntity.getFather().getIdentifier());
+            familyEntity.getChildList().forEach(child -> {
+                if (CommonUtils.isNotNull(child)) {
+                    children.add(child.getIdentifier());
+                }
+            });
+
+        });
+        return children;
+    }
+
     /**
      * Output special condition result set.
      *
@@ -124,6 +164,11 @@ public class OutputUtils {
      * @return the set of special result
      */
     public Set<String> outputSpecialConditionResult(SimpleDBUtils simpleDBUtils, String prefix) {
+        ArrayList<String> UnmarriedIndividuals = new ArrayList<String>();
+        if (prefix.equalsIgnoreCase(ErrorCode.US31)) {
+            UnmarriedIndividuals = GetAllUnMarriedIndividuals(simpleDBUtils);
+        }
+        final ArrayList<String> finalUnmarriedIndividuals = UnmarriedIndividuals;
         Set<String> results = new HashSet<>();
         simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
             switch (prefix) {
@@ -133,6 +178,14 @@ public class OutputUtils {
                 break;
                 case ErrorCode.US30: {
                     parseUS30Condition(familyEntity, results);
+                }
+                break;
+                case ErrorCode.US31: {
+                    parseUS31Condition(familyEntity, results, finalUnmarriedIndividuals);
+                }
+                break;
+                case ErrorCode.US33: {
+                    parseUS33Condition(familyEntity, results);
                 }
                 break;
             }

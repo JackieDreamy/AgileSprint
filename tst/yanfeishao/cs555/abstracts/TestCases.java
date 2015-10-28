@@ -31,6 +31,14 @@ public class TestCases {
      */
     protected static final int US30_EXPECTED_SIZE = 9;
     /**
+     * The constant US31_EXPECTED_SIZE.
+     */
+    protected static final int US31_EXPECTED_SIZE = 10;
+    /**
+     * The constant US33_EXPECTED_SIZE.
+     */
+    protected static final int US33_EXPECTED_SIZE = 1;
+    /**
      * The constant FILE_PATH.
      */
     protected static final String FILE_PATH = "src/yanfeishao/cs555/data/data.ged";
