@@ -71,11 +71,11 @@ public class ErrorInfo {
     /**
      * The constant US31.
      */
-    public static final String US31 = "List all living people over 30 who have never been married in a GEDCOM file";
+    public static final String US31 = "The individual [PersonId: %s Name: %s Age: %s] is over age 30 and has not married\n";
     /**
      * The constant US33.
      */
-    public static final String US33 = "List all orphaned children (both parents dead and child < 18 years old) in a GEDCOM file";
+    public static final String US33 = "The individual [PersonId: %s Name: %s Orphaned at Age: %s is an orphan (both parents dead and  age < 18 years old\n";
     /**
      * The constant US35.
      */

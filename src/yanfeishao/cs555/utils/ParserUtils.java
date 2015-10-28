@@ -75,6 +75,8 @@ public class ParserUtils {
     private void outputSpecialResult() {
         outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US29);
         outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US30);
+        outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US31);
+        outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US33);
     }
 
     private void outputResult() {
