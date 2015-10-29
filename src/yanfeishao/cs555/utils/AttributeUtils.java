@@ -111,12 +111,12 @@ public class AttributeUtils {
                 String childFirstName = splitName(child.getName())[0];
                 Date childBirthDate = child.getBirthDate();
                 if (firstNameMap.containsKey(childFirstName)) {
-                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), child.getBirthDate(), firstNameMap.get(childFirstName).getIdentifier(), firstNameMap.get(childFirstName).getName(), firstNameMap.get(childFirstName).getBirthDate(), familyEntity.getIdentifier()));
+                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), firstNameMap.get(childFirstName).getIdentifier(), firstNameMap.get(childFirstName).getName(), CommonUtils.getFormattedDate(firstNameMap.get(childFirstName).getBirthDate()), familyEntity.getIdentifier()));
                 } else {
                     firstNameMap.put(childFirstName, child);
                 }
                 if (birthDateMap.containsKey(child.getBirthDate())) {
-                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), child.getBirthDate(), birthDateMap.get(childBirthDate).getIdentifier(), birthDateMap.get(childBirthDate).getName(), birthDateMap.get(childBirthDate).getBirthDate(), familyEntity.getIdentifier()));
+                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), birthDateMap.get(childBirthDate).getIdentifier(), birthDateMap.get(childBirthDate).getName(), CommonUtils.getFormattedDate(birthDateMap.get(childBirthDate).getBirthDate()), familyEntity.getIdentifier()));
                 } else {
                     birthDateMap.put(childBirthDate, child);
                 }

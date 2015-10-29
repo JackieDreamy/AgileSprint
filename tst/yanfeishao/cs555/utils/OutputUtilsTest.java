@@ -108,7 +108,7 @@ public class OutputUtilsTest extends TestCases {
 
     private Set<String> expectedUS25Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, ErrorCode.US25, "@P2@", "EdwinBurton/Hague/", "Thu Nov 29 00:00:00 EST 1906", "@P12@", "EdwinBurton/Hague/", "Tue Apr 04 00:00:00 EST 1905", "@F4@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, ErrorCode.US25, "@P2@", "EdwinBurton/Hague/", "Nov-29-1906", "@P12@", "EdwinBurton/Hague/", "Apr-04-1905", "@F4@"));
         return expectedResult;
     }
 
