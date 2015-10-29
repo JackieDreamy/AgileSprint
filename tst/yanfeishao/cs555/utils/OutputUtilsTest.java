@@ -52,6 +52,7 @@ public class OutputUtilsTest extends TestCases {
 
     private Set<String> expectedUS06Result() {
         Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US06, ErrorCode.US06, "@P12@", "EdwinBurton/Hague/", "Apr-04-1905", "Jul-19-2019", "Sep-20-1972", "@F7@"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US06, ErrorCode.US06, "@P28@", "KennethArvid/Lindfors/", "May-20-1935", "Dec-10-1995", "May-09-2001", "@F10@"));
         return expectedResult;
     }
@@ -87,6 +88,7 @@ public class OutputUtilsTest extends TestCases {
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Jun-12-1933", "@F2@", "@P3@", "VernaMay/Youngster/", "13", "@P2@", "EdwinBurton/Hague/", "26"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Dec-25-1928", "@F11@", "@P16@", "Inez/Youngster/", "-41", "@P25@", "EdwardMorris/Ockers/", "25"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Jun-10-1953", "@F9@", "@P23@", "Silvia/Green/", "25", "@P15@", "Darlene/Cook/", "-45"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Nov-22-1924", "@F7@", "@P18@", "Barbara/Fritschi/", "8", "@P12@", "EdwinBurton/Hague/", "19"));
         return expectedResult;
     }
 
@@ -101,6 +103,12 @@ public class OutputUtilsTest extends TestCases {
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, ErrorCode.US21, "@F9@", "Husband", "Female", "@P15@", "Darlene/Cook/", "F", "@P23@", "Silvia/Green/", "F"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, ErrorCode.US21, "@F4@", "Husband", "Female", "@P5@", "WilliamHenry/Hague/", "F", "@P6@", "Ursula/Braddock/", "F"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, ErrorCode.US21, "@F7@", "Wife", "Male", "@P12@", "EdwinBurton/Hague/", "M", "@P18@", "Barbara/Fritschi/", "M"));
+        return expectedResult;
+    }
+
+    private Set<String> expectedUS25Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, ErrorCode.US25, "@P2@", "EdwinBurton/Hague/", "Nov-29-1906", "@P12@", "EdwinBurton/Hague/", "Apr-04-1905", "@F4@"));
         return expectedResult;
     }
 
@@ -222,6 +230,17 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS21Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US21).toArray());
+    }
+
+    /**
+     * Parse us 25 case test.
+     */
+
+    @Test
+    public void parseUS25CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS25Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US25).toArray());
     }
 
     /**

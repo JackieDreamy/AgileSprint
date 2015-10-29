@@ -98,6 +98,10 @@ public class ErrorUtils {
                     attributeUtils.parseUS21Error(result, prefix, familyEntity);
                 }
                 break;
+                case ErrorCode.US25: {
+                    attributeUtils.parseUS25Error(result, prefix, familyEntity);
+                }
+                break;
             }
         });
     }

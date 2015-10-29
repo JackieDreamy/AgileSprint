@@ -7,7 +7,7 @@ import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.entities.PersonEntity;
 import yanfeishao.cs555.enums.ParseEnum;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by JackieDreamy on 2015.
@@ -89,4 +89,37 @@ public class AttributeUtils {
             }
         }
     }
+
+    /**
+     * Parse us 25 error.
+     *
+     * @param result
+     *         the result
+     * @param prefix
+     *         the prefix
+     * @param familyEntity
+     *         the family entity
+     */
+
+    public void parseUS25Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
+        Map<String, PersonEntity> firstNameMap = new HashMap<>();
+        Map<Date, PersonEntity> birthDateMap = new HashMap<>();
+        familyEntity.getChildList().forEach(child -> {
+            if (CommonUtils.isNotNull(child)){
+                String childFirstName = splitName(child.getName())[0];
+                Date childBirthDate = child.getBirthDate();
+                if (firstNameMap.containsKey(childFirstName)) {
+                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), firstNameMap.get(childFirstName).getIdentifier(), firstNameMap.get(childFirstName).getName(), CommonUtils.getFormattedDate(firstNameMap.get(childFirstName).getBirthDate()), familyEntity.getIdentifier()));
+                } else {
+                    firstNameMap.put(childFirstName, child);
+                }
+                if (birthDateMap.containsKey(child.getBirthDate())) {
+                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), birthDateMap.get(childBirthDate).getIdentifier(), birthDateMap.get(childBirthDate).getName(), CommonUtils.getFormattedDate(birthDateMap.get(childBirthDate).getBirthDate()), familyEntity.getIdentifier()));
+                } else {
+                    birthDateMap.put(childBirthDate, child);
+                }
+            }
+        });
+    }
 }
+
