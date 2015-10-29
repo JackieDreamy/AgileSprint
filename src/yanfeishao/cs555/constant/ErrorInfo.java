@@ -59,7 +59,7 @@ public class ErrorInfo {
     /**
      * The constant US25.
      */
-    public static final String US25 = "No more than one child with the same name and birth date should appear in a family";
+    public static final String US25 = "Child [PersonId: %s Name: %s Birth Date: %s] and child [PersonId: %s Name: %s Birth Date: %s] have the same name and birth date in family %s";
     /**
      * The constant US29.
      */
