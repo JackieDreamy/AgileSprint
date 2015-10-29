@@ -10,7 +10,6 @@ import yanfeishao.cs555.enums.ParseEnum;
 import java.util.*;
 
 import java.util.Date;
-import java.util.spi.CalendarDataProvider;
 
 /**
  * Created by JackieDreamy on 2015.
@@ -58,9 +57,12 @@ public class AttributeUtils {
     /**
      * Parse us 16 error.
      *
-     * @param result       the result
-     * @param prefix       the prefix
-     * @param familyEntity the family entity
+     * @param result
+     *         the result
+     * @param prefix
+     *         the prefix
+     * @param familyEntity
+     *         the family entity
      */
     public void parseUS16Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         familyEntity.getChildList().forEach(child -> {
@@ -73,9 +75,12 @@ public class AttributeUtils {
     /**
      * Parse us 21 error.
      *
-     * @param result       the result
-     * @param prefix       the prefix
-     * @param familyEntity the family entity
+     * @param result
+     *         the result
+     * @param prefix
+     *         the prefix
+     * @param familyEntity
+     *         the family entity
      */
     public void parseUS21Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         if (us21ParseCondition(familyEntity)) {
@@ -90,9 +95,12 @@ public class AttributeUtils {
     /**
      * Parse us 25 error.
      *
-     * @param result       the result
-     * @param prefix       the prefix
-     * @param familyEntity the family entity
+     * @param result
+     *         the result
+     * @param prefix
+     *         the prefix
+     * @param familyEntity
+     *         the family entity
      */
 
     public void parseUS25Error(Set<String> result, String prefix, FamilyEntity familyEntity) {

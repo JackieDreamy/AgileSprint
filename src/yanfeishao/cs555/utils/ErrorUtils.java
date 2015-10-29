@@ -91,8 +91,7 @@ public class ErrorUtils {
     public void parseAttributeError(AttributeUtils attributeUtils, SimpleDBUtils simpleDBUtils, String prefix, Set<String> result) {
         simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
             switch (prefix) {
-                case ErrorCode.US16:
-                {
+                case ErrorCode.US16: {
                     attributeUtils.parseUS16Error(result, prefix, familyEntity);
                 }
                 break;
