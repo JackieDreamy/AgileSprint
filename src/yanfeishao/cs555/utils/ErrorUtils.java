@@ -4,6 +4,7 @@ import yanfeishao.cs555.constant.ErrorCode;
 import yanfeishao.cs555.constant.ErrorInfo;
 import yanfeishao.cs555.constant.FormatterRegex;
 import yanfeishao.cs555.constant.KeywordsConstant;
+import yanfeishao.cs555.entities.PersonEntity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -96,6 +97,10 @@ public class ErrorUtils {
                 break;
                 case ErrorCode.US21: {
                     attributeUtils.parseUS21Error(result, prefix, familyEntity);
+                }
+                break;
+                case ErrorCode.US25: {
+                    attributeUtils.parseUS25Error(result, prefix, familyEntity);
                 }
                 break;
             }
