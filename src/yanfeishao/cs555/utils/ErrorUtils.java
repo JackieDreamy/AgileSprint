@@ -128,17 +128,18 @@ public class ErrorUtils {
     public static void parseError(StringBuffer currentDate) {
         LogUtils.log(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US42));
         String message = String.format(ErrorInfo.US42, currentDate.toString());
-        LogUtils.error(message);
+        LogUtils.reason(message);
         LogUtils.line();
     }
 
-    public static void uniqueIdError(Set<String> results){
-        results.forEach(result ->{
+    public static Set<String> uniqueIdError(Set<String> results) {
+        results.forEach(result -> {
             LogUtils.log(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US22));
             String message = String.format(ErrorInfo.US22, result);
             LogUtils.reason(message);
             LogUtils.line();
         });
+        return results;
     }
 
     /**

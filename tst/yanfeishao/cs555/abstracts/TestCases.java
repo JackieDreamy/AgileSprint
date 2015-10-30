@@ -21,7 +21,7 @@ public class TestCases {
     /**
      * The constant PERSON_EXPECTED_SIZE.
      */
-    protected static final int PERSON_EXPECTED_SIZE = 27;
+    protected static final int PERSON_EXPECTED_SIZE = 28;
     /**
      * The constant US29_EXPECTED_SIZE.
      */
@@ -29,7 +29,7 @@ public class TestCases {
     /**
      * The constant US30_EXPECTED_SIZE.
      */
-    protected static final int US30_EXPECTED_SIZE = 9;
+    protected static final int US30_EXPECTED_SIZE = 1;
     /**
      * The constant US31_EXPECTED_SIZE.
      */

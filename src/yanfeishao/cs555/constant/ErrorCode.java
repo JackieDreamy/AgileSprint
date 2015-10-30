@@ -55,7 +55,7 @@ public class ErrorCode {
     /**
      * The constant US22.
      */
-    public static final String US22 = "US22";
+    public static final String US22 = "CODE US22\nCATEGORY: ERROR";
     /**
      * The constant US25.
      */

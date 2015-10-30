@@ -83,7 +83,7 @@ public class OutputUtils {
         return results;
     }
 
-    private void parseChild(List<PersonEntity> childList, Set<String> results, String prefix) {
+    private void parseChild(List<PersonEntity> childList, Set<String> results, String prefix, SimpleDBUtils simpleDBUtils) {
         childList.forEach(child -> {
             switch (prefix) {
                 case ErrorCode.US29: {
@@ -92,12 +92,18 @@ public class OutputUtils {
                     }
                 }
                 break;
+                case ErrorCode.US31: {
+                    ArrayList<String> unmarriedIndividuals = getAllUnMarriedIndividuals(simpleDBUtils);
+                    if (CommonUtils.isNotNull(child) && unmarriedIndividuals.contains(child.getIdentifier()) && (CommonUtils.compareDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate(), DateType.YEAR) > Integer.parseInt(KeywordsConstant.MARRIAGEAGE))) {
+                        results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US31, ErrorCode.US31, child.getIdentifier(), child.getName(), CommonUtils.compareDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate(), DateType.YEAR)));
+                    }
+                }
             }
         });
     }
 
     private void parseUS29Condition(FamilyEntity familyEntity, Set<String> results) {
-        parseChild(familyEntity.getChildList(), results, ErrorCode.US29);
+        parseChild(familyEntity.getChildList(), results, ErrorCode.US29, null);
         if (CommonUtils.isNotNull(familyEntity.getFather()) && CommonUtils.isNotNull(familyEntity.getFather().getDeathDate())) {
             results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US29, ErrorCode.US29, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getFather().getDeathDate())));
         }
@@ -107,17 +113,9 @@ public class OutputUtils {
     }
 
     private void parseUS30Condition(FamilyEntity familyEntity, Set<String> results) {
-        if (CommonUtils.isNotNull(familyEntity.getMarriedDate())) {
+        if (CommonUtils.isNotNull(familyEntity.getMarriedDate()) && !CommonUtils.isNotNull(familyEntity.getMother().getDeathDate()) && !CommonUtils.isNotNull(familyEntity.getFather().getDeathDate())) {
             results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US30, ErrorCode.US30, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getMarriedDate()), familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName()));
         }
-    }
-
-    private void parseUS31Condition(FamilyEntity familyEntity, Set<String> results, ArrayList<String> UnmarriedIndividuals) {
-        familyEntity.getChildList().forEach(child -> {
-            if (CommonUtils.isNotNull(child) && UnmarriedIndividuals.contains(child.getIdentifier()) && (CommonUtils.compareDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate(), DateType.YEAR) > Integer.parseInt(KeywordsConstant.MARRIAGEAGE))) {
-                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US31, ErrorCode.US31, child.getIdentifier(), child.getName(), CommonUtils.compareDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate(), DateType.YEAR)));
-            }
-        });
     }
 
     private void parseUS33Condition(FamilyEntity familyEntity, Set<String> results) {
@@ -136,12 +134,10 @@ public class OutputUtils {
         }
     }
 
-    private ArrayList<String> GetAllUnMarriedIndividuals(SimpleDBUtils simpleDBUtils) {
-        ArrayList<String> children = new ArrayList<String>();
+    private ArrayList<String> getAllUnMarriedIndividuals(SimpleDBUtils simpleDBUtils) {
+        ArrayList<String> children = new ArrayList<>();
         simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
-            if (children.contains(familyEntity.getFather().getIdentifier()))
-                children.remove(familyEntity.getFather().getIdentifier());
-            if (children.contains(familyEntity.getMother().getIdentifier()))
+            if (children.contains(familyEntity.getMother().getIdentifier()) || children.contains(familyEntity.getFather().getIdentifier()))
                 children.remove(familyEntity.getFather().getIdentifier());
             familyEntity.getChildList().forEach(child -> {
                 if (CommonUtils.isNotNull(child)) {
@@ -164,11 +160,6 @@ public class OutputUtils {
      * @return the set of special result
      */
     public Set<String> outputSpecialConditionResult(SimpleDBUtils simpleDBUtils, String prefix) {
-        ArrayList<String> UnmarriedIndividuals = new ArrayList<String>();
-        if (prefix.equalsIgnoreCase(ErrorCode.US31)) {
-            UnmarriedIndividuals = GetAllUnMarriedIndividuals(simpleDBUtils);
-        }
-        final ArrayList<String> finalUnmarriedIndividuals = UnmarriedIndividuals;
         Set<String> results = new HashSet<>();
         simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
             switch (prefix) {
@@ -181,7 +172,7 @@ public class OutputUtils {
                 }
                 break;
                 case ErrorCode.US31: {
-                    parseUS31Condition(familyEntity, results, finalUnmarriedIndividuals);
+                    parseChild(familyEntity.getChildList(), results, ErrorCode.US31, simpleDBUtils);
                 }
                 break;
                 case ErrorCode.US33: {
