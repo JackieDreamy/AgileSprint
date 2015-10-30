@@ -181,4 +181,8 @@ public class KeywordsConstant {
      * The constant INFO.
      */
     public static final String INFO = "[INFO] ";
+    /**
+     * The constant REASON.
+     */
+    public static final String REASON = "REASON: ";
 }

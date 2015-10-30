@@ -38,6 +38,16 @@ public class LogUtils {
     }
 
     /**
+     * Reason.
+     *
+     * @param message
+     *         the message
+     */
+    public static void reason(String message) {
+        System.out.println(KeywordsConstant.REASON + message);
+    }
+
+    /**
      * Line.
      */
     public static void line() {

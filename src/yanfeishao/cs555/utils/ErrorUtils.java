@@ -124,11 +124,21 @@ public class ErrorUtils {
      * @param currentDate
      *         the current date
      */
+
     public static void parseError(StringBuffer currentDate) {
         LogUtils.log(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US42));
         String message = String.format(ErrorInfo.US42, currentDate.toString());
         LogUtils.error(message);
         LogUtils.line();
+    }
+
+    public static void uniqueIdError(Set<String> results){
+        results.forEach(result ->{
+            LogUtils.log(String.format(FormatterRegex.ERROR_TITLE, KeywordsConstant.ERROR, ErrorCode.US22));
+            String message = String.format(ErrorInfo.US22, result);
+            LogUtils.reason(message);
+            LogUtils.line();
+        });
     }
 
     /**

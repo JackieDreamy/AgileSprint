@@ -14,6 +14,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Yanfei Shao on 2015.
@@ -26,7 +28,9 @@ public class ParserUtils {
     private PersonEntity personEntity;
     private FamilyEntity familyEntity;
     private OutputUtils outputUtils;
-
+    private Set<String> personUniqueSet;
+    private Set<String> familyUniqueSet;
+    private Set<String> uniqueResult;
     private ParserUtils() {
     }
 
@@ -53,6 +57,9 @@ public class ParserUtils {
             gedReader = new BufferedReader(new FileReader(filePath));
             simpleDBUtils = SimpleDBUtils.createDBFactory();
             outputUtils = OutputUtils.createOutputFactory();
+            personUniqueSet = new HashSet<>();
+            familyUniqueSet = new HashSet<>();
+            uniqueResult = new HashSet<>();
             String line = gedReader.readLine();
             while (line != null) {
                 parseTag(line);
@@ -97,6 +104,7 @@ public class ParserUtils {
         outputUtils.outputError(simpleDBUtils, ErrorCode.US12);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US16);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US21);
+        ErrorUtils.uniqueIdError(uniqueResult);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US25);
     }
 
@@ -151,7 +159,12 @@ public class ParserUtils {
         if (tagsUtils.getTagSets().contains(tag)) {
             switch (tag) {
                 case KeywordsConstant.FAM:
-                    familyEntity.setIdentifier(lineArray[1]);
+                    if (familyUniqueSet.contains(lineArray[1])){
+                        uniqueResult.add(lineArray[1]);
+                    }else{
+                        familyUniqueSet.add(lineArray[1]);
+                        familyEntity.setIdentifier(lineArray[1]);
+                    }
                     break;
                 case KeywordsConstant.HUSB:
                     familyEntity.setFather(getPersonEntity(lineArray));
@@ -184,7 +197,12 @@ public class ParserUtils {
         if (tagsUtils.getTagSets().contains(tag)) {
             switch (tag) {
                 case KeywordsConstant.INDI:
-                    personEntity.setIdentifier(lineArray[1]);
+                    if (personUniqueSet.contains(lineArray[1])){
+                        uniqueResult.add(lineArray[1]);
+                    }else{
+                        personUniqueSet.add(lineArray[1]);
+                        personEntity.setIdentifier(lineArray[1]);
+                    }
                     break;
                 case KeywordsConstant.NAME:
                     StringBuffer nameBuffer = new StringBuffer();

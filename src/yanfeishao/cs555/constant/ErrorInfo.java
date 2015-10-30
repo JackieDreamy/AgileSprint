@@ -55,7 +55,7 @@ public class ErrorInfo {
     /**
      * The constant US22.
      */
-    public static final String US22 = "All individual IDs should be unique and all family IDs should be unique";
+    public static final String US22 = "Individual or Family IDs [Identifier: %s] already exists";
     /**
      * The constant US25.
      */
