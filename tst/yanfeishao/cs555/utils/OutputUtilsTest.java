@@ -70,7 +70,6 @@ public class OutputUtilsTest extends TestCases {
         Set<String> expectedResult = new HashSet<>();
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09, ErrorCode.US09, "@P16@", "Inez/Youngster/", "Jun-04-1970", "@F5@", "@P9@", "Apr-11-1963"));
         // F8 should not be here, but we do not handle duplicate Identifier, after we start sprint 3, this record should be removed.
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09, ErrorCode.US09, "@P15@", "Darlene/Cook/", "Oct-18-1998", "@F8@", "@P6@", "Feb-02-1965"));
         return expectedResult;
     }
 
@@ -103,6 +102,12 @@ public class OutputUtilsTest extends TestCases {
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, ErrorCode.US21, "@F9@", "Husband", "Female", "@P15@", "Darlene/Cook/", "F", "@P23@", "Silvia/Green/", "F"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, ErrorCode.US21, "@F4@", "Husband", "Female", "@P5@", "WilliamHenry/Hague/", "F", "@P6@", "Ursula/Braddock/", "F"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US21, ErrorCode.US21, "@F7@", "Wife", "Male", "@P12@", "EdwinBurton/Hague/", "M", "@P18@", "Barbara/Fritschi/", "M"));
+        return expectedResult;
+    }
+
+    private Set<String> expectedUS22Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US22, ErrorCode.US22, "@P15@"));
         return expectedResult;
     }
 
@@ -230,6 +235,16 @@ public class OutputUtilsTest extends TestCases {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
         Assert.assertArrayEquals(expectedUS21Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US21).toArray());
+    }
+
+    /**
+     * Parse us 22 case test.
+     */
+    @Test
+    public void parseUS22CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS22Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US22).toArray());
     }
 
     /**
