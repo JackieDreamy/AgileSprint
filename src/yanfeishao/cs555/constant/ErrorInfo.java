@@ -67,7 +67,7 @@ public class ErrorInfo {
     /**
      * The constant US30.
      */
-    public static final String US30 = "The individual [PersonId: %s Name: %s] has already married on [%s] with people [PersonId: %s Name: %s]\n";
+    public static final String US30 = "The individual [PersonId: %s Name: %s] has already married on [%s] with people [PersonId: %s Name: %s] and both of them are current living\n";
     /**
      * The constant US31.
      */
@@ -75,7 +75,7 @@ public class ErrorInfo {
     /**
      * The constant US33.
      */
-    public static final String US33 = "The individual [PersonId: %s Name: %s Orphaned at Age: %s is an orphan (both parents dead and  age < 18 years old\n";
+    public static final String US33 = "The individual [PersonId: %s Name: %s Orphaned at Age: %s ] is an orphan (both parents dead [Father: %s Death Date: %s, Mother: %s Death Date: %s] and age < 18 years old\n";
     /**
      * The constant US35.
      */

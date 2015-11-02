@@ -7,7 +7,10 @@ import yanfeishao.cs555.entities.FamilyEntity;
 import yanfeishao.cs555.entities.PersonEntity;
 import yanfeishao.cs555.enums.ParseEnum;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by JackieDreamy on 2015.
@@ -108,14 +111,10 @@ public class AttributeUtils {
             if (CommonUtils.isNotNull(child)){
                 String childFirstName = splitName(child.getName())[0];
                 Date childBirthDate = child.getBirthDate();
-                if (firstNameMap.containsKey(childFirstName)) {
+                if (firstNameMap.containsKey(childFirstName) && birthDateMap.containsKey(child.getBirthDate())) {
                     result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), firstNameMap.get(childFirstName).getIdentifier(), firstNameMap.get(childFirstName).getName(), CommonUtils.getFormattedDate(firstNameMap.get(childFirstName).getBirthDate()), familyEntity.getIdentifier()));
                 } else {
                     firstNameMap.put(childFirstName, child);
-                }
-                if (birthDateMap.containsKey(child.getBirthDate())) {
-                    result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), birthDateMap.get(childBirthDate).getIdentifier(), birthDateMap.get(childBirthDate).getName(), CommonUtils.getFormattedDate(birthDateMap.get(childBirthDate).getBirthDate()), familyEntity.getIdentifier()));
-                } else {
                     birthDateMap.put(childBirthDate, child);
                 }
             }

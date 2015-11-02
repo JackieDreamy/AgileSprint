@@ -128,7 +128,7 @@ public class OutputUtils {
             }
             familyEntity.getChildList().forEach(child -> {
                 if (CommonUtils.isNotNull(child) && CommonUtils.isNotNull(child.getBirthDate()) && (CommonUtils.compareDateDiff(child.getBirthDate(), orphanDate, DateType.YEAR) < Integer.parseInt(KeywordsConstant.ADULT))) {
-                    results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US33, ErrorCode.US33, child.getIdentifier(), child.getName(), CommonUtils.compareDateDiff(child.getBirthDate(), orphanDate, DateType.YEAR)));
+                    results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US33, ErrorCode.US33, child.getIdentifier(), child.getName(), CommonUtils.compareDateDiff(child.getBirthDate(), orphanDate, DateType.YEAR), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getFather().getDeathDate()), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(familyEntity.getMother().getDeathDate())));
                 }
             });
         }

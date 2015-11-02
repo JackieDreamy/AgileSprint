@@ -52,7 +52,7 @@ public class OutputUtilsTest extends TestCases {
 
     private Set<String> expectedUS06Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US06, ErrorCode.US06, "@P12@", "EdwinBurton/Hague/", "Apr-04-1905", "Jul-19-2019", "Sep-20-1972", "@F7@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US06, ErrorCode.US06, "@P12@", "EdwinBurton/Hague/", "Nov-29-1906", "Jul-19-2019", "Sep-20-1972", "@F7@"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US06, ErrorCode.US06, "@P28@", "KennethArvid/Lindfors/", "May-20-1935", "Dec-10-1995", "May-09-2001", "@F10@"));
         return expectedResult;
     }
@@ -84,7 +84,7 @@ public class OutputUtilsTest extends TestCases {
         Set<String> expectedResult = new HashSet<>();
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Jun-12-1933", "@F2@", "@P3@", "VernaMay/Youngster/", "13", "@P2@", "EdwinBurton/Hague/", "26"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Dec-25-1928", "@F11@", "@P16@", "Inez/Youngster/", "-41", "@P25@", "EdwardMorris/Ockers/", "25"));
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Nov-22-1924", "@F7@", "@P18@", "Barbara/Fritschi/", "8", "@P12@", "EdwinBurton/Hague/", "19"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US10, ErrorCode.US10, "Nov-22-1924", "@F7@", "@P18@", "Barbara/Fritschi/", "8", "@P12@", "EdwinBurton/Hague/", "17"));
         return expectedResult;
     }
 
@@ -103,7 +103,7 @@ public class OutputUtilsTest extends TestCases {
 
     private Set<String> expectedUS25Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, ErrorCode.US25, "@P2@", "EdwinBurton/Hague/", "Nov-29-1906", "@P12@", "EdwinBurton/Hague/", "Apr-04-1905", "@F4@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US25, ErrorCode.US25, "@P2@", "EdwinBurton/Hague/", "Nov-29-1906", "@P12@", "EdwinBurton/Hague/", "Nov-29-1906", "@F4@"));
         return expectedResult;
     }
 
