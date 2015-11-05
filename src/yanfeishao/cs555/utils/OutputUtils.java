@@ -134,6 +134,12 @@ public class OutputUtils {
         }
     }
 
+    private void parseUS39Condition(FamilyEntity familyEntity, Set<String> results) {
+        if (!CommonUtils.isNotNull(familyEntity.getFather().getDeathDate()) && !CommonUtils.isNotNull(familyEntity.getMother().getDeathDate()) && CommonUtils.isNotNull(familyEntity.getMarriedDate()) && CommonUtils.compareWithCurrentDateDiff(familyEntity.getMarriedDate(), CommonUtils.getCurrentDate()) <= 30) {
+            results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US39, ErrorCode.US39, CommonUtils.getFormattedDate(familyEntity.getMarriedDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
+        }
+    }
+
     private ArrayList<String> getAllUnMarriedIndividuals(SimpleDBUtils simpleDBUtils) {
         ArrayList<String> children = new ArrayList<>();
         simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
@@ -179,6 +185,9 @@ public class OutputUtils {
                     parseUS33Condition(familyEntity, results);
                 }
                 break;
+                case ErrorCode.US39: {
+                    parseUS39Condition(familyEntity, results);
+                }
             }
         });
         results.forEach((result -> LogUtils.info(result)));

@@ -5,6 +5,7 @@ import yanfeishao.cs555.enums.DateType;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -85,5 +86,25 @@ public class CommonUtils {
                 return Period.between(birthLocalDate, compareLocalDate).getYears();
         }
         return 0;
+    }
+
+    /**
+     * Compare with current date diff long. (Days Diff)
+     *
+     * @param compareDate
+     *         the compare date
+     * @param currentDate
+     *         the current date
+     *
+     * @return the long
+     */
+    public static long compareWithCurrentDateDiff(Date compareDate, Date currentDate) {
+        LocalDate compareLocalDate = getLocalDate(compareDate);
+        LocalDate currentLocalDate = getLocalDate(currentDate);
+        LocalDate nextDay = compareLocalDate.withYear(currentLocalDate.getYear());
+        if (nextDay.isBefore(currentLocalDate) || nextDay.isEqual(currentLocalDate)) {
+            nextDay = nextDay.plusYears(1);
+        }
+        return ChronoUnit.DAYS.between(currentLocalDate, nextDay);
     }
 }

@@ -93,9 +93,9 @@ public class ErrorCode {
      */
     public static final String US39 = "US39";
     /**
-     * The constant US40.
+     * The constant US34.
      */
-    public static final String US40 = "US40";
+    public static final String US34 = "US34";
     /**
      * The constant US42.
      */

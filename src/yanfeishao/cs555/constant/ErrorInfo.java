@@ -35,7 +35,7 @@ public class ErrorInfo {
     /**
      * The constant US09.
      */
-    public static final String US09 = "Child [PersonId: %s Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [%s's deathDate: %s]\n";
+    public static final String US09 = "Child [PersonId: %s Name: %s BirthDate: %s] from family [%s] should be born before death of mother and before 9 months after death of father [PersonId: %s DeathDate: %s]\n";
     /**
      * The constant US10.
      */
@@ -91,11 +91,11 @@ public class ErrorInfo {
     /**
      * The constant US39.
      */
-    public static final String US39 = "List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days";
+    public static final String US39 = "Living couples whose marriage on [Marriage Date: %s] anniversaries occur in the next 30 days [Current Date: %s]\n";
     /**
-     * The constant US40.
+     * The constant US34.
      */
-    public static final String US40 = "List line numbers from GEDCOM source file when reporting errors";
+    public static final String US34 = "List all couples who were married when the older spouse was more than twice as old as the younger spouse";
     /**
      * The constant US42.
      */
