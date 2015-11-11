@@ -83,11 +83,11 @@ public class ErrorInfo {
     /**
      * The constant US36.
      */
-    public static final String US36 = "List all people in a GEDCOM file who died in the last 30 days";
+    public static final String US36 = "List all people in a GEDCOM file [PersonId: %s Name: %s Died on: %s] who died in the last 30 days [Current Date: %s]";
     /**
      * The constant US38.
      */
-    public static final String US38 = "List all living people in a GEDCOM file whose birthdays occur in the next 30 days";
+    public static final String US38 = "List all people in a GEDCOM file [PersonId: %s Name: %s [Birth Date: %s] whose birthdays occur in the next 30 days [Current Date: %s]";
     /**
      * The constant US39.
      */
