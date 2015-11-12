@@ -112,7 +112,16 @@ public class DateUtils {
                             if (CommonUtils.isNotNull(wifeBirthDate) && (CommonUtils.compareDateDiff(wifeBirthDate, childBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.MOTHERAGE))) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, prefix, KeywordsConstant.MOTHER, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(wifeBirthDate), KeywordsConstant.MOTHERAGE, KeywordsConstant.HER, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), familyEntity.getIdentifier()));
                             } else if (CommonUtils.isNotNull(husbandBirthDate) && (CommonUtils.compareDateDiff(husbandBirthDate, childBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.FATHERAGE))) {
-                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(husbandBirthDate), KeywordsConstant.FATHER, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), familyEntity.getIdentifier()));
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(husbandBirthDate), KeywordsConstant.FATHERAGE, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), familyEntity.getIdentifier()));
+                            }
+                        }
+                    }
+                    break;
+                    case ErrorCode.US35: {
+                        if (CommonUtils.isNotNull(childBirthDate)) {
+                            long days = CommonUtils.compareDateDiff(childBirthDate, CommonUtils.getCurrentDate(), DateType.DAY);
+                            if (days <= 30) {
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US35, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), familyEntity.getIdentifier()));
                             }
                         }
                     }
@@ -294,7 +303,7 @@ public class DateUtils {
     }
 
     /**
-     * Parse us 08, 09, 12 error.
+     * Parse us 08, 09, 12，35 error.
      *
      * @param result
      *         the result
@@ -303,7 +312,7 @@ public class DateUtils {
      * @param familyEntity
      *         the family entity
      */
-    public void parseUS08US09US12Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
+    public void parseUS08US09US12US35Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         parseChildDateError(result, familyEntity, prefix);
     }
 
