@@ -62,21 +62,23 @@ public class OutputUtilsTest extends TestCases {
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08, ErrorCode.US08, "@P15@", "John/Cook/", "Dec-26-1922", "after", "divorce", "Mar-15-1921", "@F8@"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08, ErrorCode.US08, "@P24@", "John/Cook/Jr", "Feb-08-1952", "before", "marriage", "Jun-10-1953", "@F9@"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08, ErrorCode.US08, "@P1@", "EdwinWilliam/Hague/", "Jan-21-1933", "before", "marriage", "Jun-12-1933", "@F2@"));
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08, ErrorCode.US08, "@P14@", "Jillian/Cook/", "Oct-15-1924", "after", "divorce", "Mar-15-1921", "@F8@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US08, ErrorCode.US08, "@P14@", "Jillian/Cook/", "Oct-15-1969", "after", "divorce", "Mar-15-1921", "@F8@"));
         return expectedResult;
     }
 
     private Set<String> expectedUS09Result() {
         Set<String> expectedResult = new HashSet<>();
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09, ErrorCode.US09, "@P16@", "Inez/Youngster/", "Jun-04-1970", "@F5@", "@P9@", "Apr-11-1963"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09, ErrorCode.US09, "@P14@", "Jillian/Cook/", "Oct-15-1969", "@F8@", "@P6@", "Feb-02-1965"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US09, ErrorCode.US09, "@P20@", "Elisabeth/Elsasser/", "Oct-30-2015", "@F12@", "@P14@", "Feb-05-1997"));
         return expectedResult;
     }
 
     private Set<String> expectedUS12Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, ErrorCode.US12, "Mother", "@P14@", "Jillian/Cook/", "Oct-15-1924", "60", "her", "@P20@", "Elisabeth/Elsasser/", "May-30-1989", "@F12@"));
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, ErrorCode.US12, "Mother", "@P14@", "Jillian/Cook/", "Oct-15-1924", "60", "her", "@P19@", "John/Elsaesser/", "Oct-29-1992", "@F12@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, ErrorCode.US12, "Mother", "@P6@", "Ursula/Braddock/", "Aug-11-1886", "60", "her", "@P14@", "Jillian/Cook/", "Oct-15-1969", "@F8@"));
         expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, ErrorCode.US12, "Mother", "@P9@", "Elizabeth/VanHaste/", "Sep-10-1880", "60", "her", "@P16@", "Inez/Youngster/", "Jun-04-1970", "@F5@"));
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, ErrorCode.US12, "Father", "@P21@", "Jakob/Elsasser/", "Apr-23-1921", "80", "his", "@P20@", "Elisabeth/Elsasser/", "Oct-30-2015", "@F12@"));
         return expectedResult;
     }
 
@@ -107,6 +109,12 @@ public class OutputUtilsTest extends TestCases {
         return expectedResult;
     }
 
+    private Set<String> expectedUS35Result() {
+        Set<String> expectedResult = new HashSet<>();
+        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US35, ErrorCode.US35, "@P20@", "Elisabeth/Elsasser/", "Oct-30-2015", CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), "@F12@"));
+        return expectedResult;
+    }
+    /**
     /**
      * Parse uS 01 case test.
      */
@@ -278,5 +286,25 @@ public class OutputUtilsTest extends TestCases {
         Assert.assertEquals(US33_EXPECTED_SIZE, outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US33).size());
     }
 
+    /**
+     * Parse us 34 case test.
+
+     */
+    @Test
+    public void parseUS34CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertTrue(2 == outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US34).toArray().length);
+    }
+
+    /**
+     * Parse us 35 case test.
+     */
+    @Test
+    public void parseUS35CaseTest() {
+        SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
+        Assert.assertNotNull(simpleDBUtils);
+        Assert.assertArrayEquals(expectedUS35Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US35).toArray());
+    }
 }
 

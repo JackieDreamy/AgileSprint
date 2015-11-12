@@ -51,15 +51,15 @@ public class ErrorInfo {
     /**
      * The constant US21.
      */
-    public static final String US21 = "The husband in a family should be male and wife in a family should be female, in family [%s %s is %s], the husband is [PersonId: %s Name: %s Gender: %s] and the wife is [PersonId: %s Name: %s Gender: %s]";
+    public static final String US21 = "The husband in a family should be male and wife in a family should be female, in family [%s %s is %s], the husband is [PersonId: %s Name: %s Gender: %s] and the wife is [PersonId: %s Name: %s Gender: %s]\n";
     /**
      * The constant US22.
      */
-    public static final String US22 = "Individual or Family IDs [Identifier: %s] already exists";
+    public static final String US22 = "Individual or Family IDs [Identifier: %s] already exists\n";
     /**
      * The constant US25.
      */
-    public static final String US25 = "Child [PersonId: %s Name: %s Birth Date: %s] and child [PersonId: %s Name: %s Birth Date: %s] have the same name and birth date in family %s";
+    public static final String US25 = "Child [PersonId: %s Name: %s Birth Date: %s] and child [PersonId: %s Name: %s Birth Date: %s] have the same name and birth date in family %s\n";
     /**
      * The constant US29.
      */
@@ -77,25 +77,25 @@ public class ErrorInfo {
      */
     public static final String US33 = "The individual [PersonId: %s Name: %s Orphaned at Age: %s ] is an orphan (both parents dead [Father: %s Death Date: %s, Mother: %s Death Date: %s] and age < 18 years old\n";
     /**
+     * The constant US34.
+     */
+    public static final String US34 = "The older spouse [PersonID: %s Name: %s Birth Date: %s] was more than twice as old as the younger spouse [PersonID: %s Name: %s Birth Date: %s] when they were married [Date : %s]\n";
+    /**
      * The constant US35.
      */
-    public static final String US35 = "List all people in a GEDCOM file who were born in the last 30 days";
+    public static final String US35 = "Child [PersonId: %s Name: %s Birth Date: %s] was born in the last 30 days [Current Date: %s] in Family %s\n";
     /**
      * The constant US36.
      */
-    public static final String US36 = "List all people in a GEDCOM file [PersonId: %s Name: %s Died on: %s] who died in the last 30 days [Current Date: %s]";
+    public static final String US36 = "List all people in a GEDCOM file [PersonId: %s Name: %s Died on: %s] who died in the last 30 days [Current Date: %s]\n";
     /**
      * The constant US38.
      */
-    public static final String US38 = "List all people in a GEDCOM file [PersonId: %s Name: %s [Birth Date: %s] whose birthdays occur in the next 30 days [Current Date: %s]";
+    public static final String US38 = "List all people in a GEDCOM file [PersonId: %s Name: %s [Birth Date: %s] whose birthdays occur in the next 30 days [Current Date: %s]\n";
     /**
      * The constant US39.
      */
     public static final String US39 = "Living couples whose marriage on [Marriage Date: %s] anniversaries occur in the next 30 days [Current Date: %s]\n";
-    /**
-     * The constant US34.
-     */
-    public static final String US34 = "List all couples who were married when the older spouse was more than twice as old as the younger spouse";
     /**
      * The constant US42.
      */
