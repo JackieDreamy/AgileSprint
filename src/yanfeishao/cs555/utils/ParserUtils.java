@@ -84,6 +84,7 @@ public class ParserUtils {
         outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US30);
         outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US31);
         outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US33);
+        outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US34);
         outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US39);
     }
 
@@ -107,6 +108,7 @@ public class ParserUtils {
         outputUtils.outputError(simpleDBUtils, ErrorCode.US21);
         ErrorUtils.uniqueIdError(uniqueResult);
         outputUtils.outputError(simpleDBUtils, ErrorCode.US25);
+        outputUtils.outputError(simpleDBUtils, ErrorCode.US35);
     }
 
     private Date parseDate(String line) {

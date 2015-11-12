@@ -1,5 +1,7 @@
 package yanfeishao.cs555.constant;
 
+import java.util.Date;
+
 /**
  * The type Error info.
  */
@@ -77,9 +79,13 @@ public class ErrorInfo {
      */
     public static final String US33 = "The individual [PersonId: %s Name: %s Orphaned at Age: %s ] is an orphan (both parents dead [Father: %s Death Date: %s, Mother: %s Death Date: %s] and age < 18 years old\n";
     /**
+     * The constant US34.
+     */
+    public static final String US34 = "The older spouse [PersonID: %s Name: %s Birth Date: %s] was more than twice as old as the younger spouse [PersonID: %s Name: %s Birth Date: %s] when they were married [Date : %s]\n";
+    /**
      * The constant US35.
      */
-    public static final String US35 = "List all people in a GEDCOM file who were born in the last 30 days";
+    public static final String US35 = "Child [PersonId: %s Name: %s Birth Date: %s] was born in the last 30 days [Current Date: %s] in Family %s\n";
     /**
      * The constant US36.
      */
@@ -92,10 +98,6 @@ public class ErrorInfo {
      * The constant US39.
      */
     public static final String US39 = "Living couples whose marriage on [Marriage Date: %s] anniversaries occur in the next 30 days [Current Date: %s]\n";
-    /**
-     * The constant US34.
-     */
-    public static final String US34 = "List all couples who were married when the older spouse was more than twice as old as the younger spouse";
     /**
      * The constant US42.
      */

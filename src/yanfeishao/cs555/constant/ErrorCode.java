@@ -77,6 +77,10 @@ public class ErrorCode {
      */
     public static final String US33 = "US33";
     /**
+     * The constant US34.
+     */
+    public static final String US34 = "US34";
+    /**
      * The constant US35.
      */
     public static final String US35 = "US35";
@@ -92,10 +96,6 @@ public class ErrorCode {
      * The constant US39.
      */
     public static final String US39 = "US39";
-    /**
-     * The constant US34.
-     */
-    public static final String US34 = "US34";
     /**
      * The constant US42.
      */

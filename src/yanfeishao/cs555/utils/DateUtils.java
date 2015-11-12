@@ -112,11 +112,19 @@ public class DateUtils {
                             if (CommonUtils.isNotNull(wifeBirthDate) && (CommonUtils.compareDateDiff(wifeBirthDate, childBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.MOTHERAGE))) {
                                 result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, prefix, KeywordsConstant.MOTHER, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(wifeBirthDate), KeywordsConstant.MOTHERAGE, KeywordsConstant.HER, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), familyEntity.getIdentifier()));
                             } else if (CommonUtils.isNotNull(husbandBirthDate) && (CommonUtils.compareDateDiff(husbandBirthDate, childBirthDate, DateType.YEAR) >= Integer.parseInt(KeywordsConstant.FATHERAGE))) {
-                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(husbandBirthDate), KeywordsConstant.FATHER, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), familyEntity.getIdentifier()));
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US12, prefix, KeywordsConstant.FATHER, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(husbandBirthDate), KeywordsConstant.FATHERAGE, KeywordsConstant.HIS, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), familyEntity.getIdentifier()));
                             }
                         }
                     }
                     break;
+                    case ErrorCode.US35: {
+                        if (CommonUtils.isNotNull(childBirthDate)) {
+                            long days = CommonUtils.compareDateDiff(childBirthDate, CommonUtils.getCurrentDate(), DateType.DAY);
+                            if (days <= 30) {
+                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US35, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), familyEntity.getIdentifier()));
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -125,24 +133,15 @@ public class DateUtils {
     /**
      * Parse us 01 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param marriageDate
-     *         the marriage date
-     * @param divorceDate
-     *         the divorce date
-     * @param husbandBirthDate
-     *         the husband birth date
-     * @param wifeBirthDate
-     *         the wife birth date
-     * @param husbandDeathDate
-     *         the husband death date
-     * @param wifeDeathDate
-     *         the wife death date
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param marriageDate     the marriage date
+     * @param divorceDate      the divorce date
+     * @param husbandBirthDate the husband birth date
+     * @param wifeBirthDate    the wife birth date
+     * @param husbandDeathDate the husband death date
+     * @param wifeDeathDate    the wife death date
      */
     public void parseUS01Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date marriageDate, Date divorceDate, Date husbandBirthDate, Date wifeBirthDate, Date husbandDeathDate, Date wifeDeathDate) {
         if (us01ParseCondition(husbandBirthDate, husbandDeathDate, wifeBirthDate, wifeDeathDate, marriageDate, divorceDate)) {
@@ -167,18 +166,12 @@ public class DateUtils {
     /**
      * Parse us 02 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param marriageDate
-     *         the marriage date
-     * @param husbandBirthDate
-     *         the husband birth date
-     * @param wifeBirthDate
-     *         the wife birth date
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param marriageDate     the marriage date
+     * @param husbandBirthDate the husband birth date
+     * @param wifeBirthDate    the wife birth date
      */
     public void parseUS02Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date marriageDate, Date husbandBirthDate, Date wifeBirthDate) {
         if (CommonUtils.isNotNull(marriageDate) && CommonUtils.isNotNull(husbandBirthDate) && CommonUtils.isNotNull(wifeBirthDate)) {
@@ -193,20 +186,13 @@ public class DateUtils {
     /**
      * Parse us 03 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param husbandBirthDate
-     *         the husband birth date
-     * @param husbandDeathDate
-     *         the husband death date
-     * @param wifeBirthDate
-     *         the wife birth date
-     * @param wifeDeathDate
-     *         the wife death date
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param husbandBirthDate the husband birth date
+     * @param husbandDeathDate the husband death date
+     * @param wifeBirthDate    the wife birth date
+     * @param wifeDeathDate    the wife death date
      */
     public void parseUS03Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date husbandBirthDate, Date husbandDeathDate, Date wifeBirthDate, Date wifeDeathDate) {
         if (us03ParseCondition(husbandBirthDate, husbandDeathDate, wifeBirthDate, wifeDeathDate)) {
@@ -222,16 +208,11 @@ public class DateUtils {
     /**
      * Parse us 04 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param marriageDate
-     *         the marriage date
-     * @param divorceDate
-     *         the divorce date
+     * @param result       the result
+     * @param prefix       the prefix
+     * @param familyEntity the family entity
+     * @param marriageDate the marriage date
+     * @param divorceDate  the divorce date
      */
     public void parseUS04Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date marriageDate, Date divorceDate) {
         if (CommonUtils.isNotNull(marriageDate) && CommonUtils.isNotNull(divorceDate)) {
@@ -244,18 +225,12 @@ public class DateUtils {
     /**
      * Parse us 05 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param husbandDeathDate
-     *         the husband death date
-     * @param wifeDeathDate
-     *         the wife death date
-     * @param marriageDate
-     *         the marriage date
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param husbandDeathDate the husband death date
+     * @param wifeDeathDate    the wife death date
+     * @param marriageDate     the marriage date
      */
     public void parseUS05Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date husbandDeathDate, Date wifeDeathDate, Date marriageDate) {
         if (CommonUtils.isNotNull(marriageDate) && CommonUtils.isNotNull(husbandDeathDate) && CommonUtils.isNotNull(wifeDeathDate)) {
@@ -270,18 +245,12 @@ public class DateUtils {
     /**
      * Parse us 06 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param husbandDeathDate
-     *         the husband death date
-     * @param wifeDeathDate
-     *         the wife death date
-     * @param divorceDate
-     *         the divorce date
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param husbandDeathDate the husband death date
+     * @param wifeDeathDate    the wife death date
+     * @param divorceDate      the divorce date
      */
     public void parseUS06Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date husbandDeathDate, Date wifeDeathDate, Date divorceDate) {
         if (CommonUtils.isNotNull(divorceDate) && CommonUtils.isNotNull(husbandDeathDate) && CommonUtils.isNotNull(wifeDeathDate)) {
@@ -294,34 +263,25 @@ public class DateUtils {
     }
 
     /**
-     * Parse us 08, 09, 12 error.
+     * Parse us 08, 09, 12，35 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
+     * @param result       the result
+     * @param prefix       the prefix
+     * @param familyEntity the family entity
      */
-    public void parseUS08US09US12Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
+    public void parseUS08US09US12US35Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         parseChildDateError(result, familyEntity, prefix);
     }
 
     /**
      * Parse us 10 error.
      *
-     * @param result
-     *         the result
-     * @param prefix
-     *         the prefix
-     * @param familyEntity
-     *         the family entity
-     * @param husbandBirthDate
-     *         the husband birth date
-     * @param wifeBirthDate
-     *         the wife birth date
-     * @param marriageDate
-     *         the marriage date
+     * @param result           the result
+     * @param prefix           the prefix
+     * @param familyEntity     the family entity
+     * @param husbandBirthDate the husband birth date
+     * @param wifeBirthDate    the wife birth date
+     * @param marriageDate     the marriage date
      */
     public void parseUS10Error(Set<String> result, String prefix, FamilyEntity familyEntity, Date husbandBirthDate, Date wifeBirthDate, Date marriageDate) {
         if (CommonUtils.isNotNull(husbandBirthDate) && CommonUtils.isNotNull(wifeBirthDate) && CommonUtils.isNotNull(marriageDate) && us10ParseCondition(husbandBirthDate, wifeBirthDate, marriageDate)) {

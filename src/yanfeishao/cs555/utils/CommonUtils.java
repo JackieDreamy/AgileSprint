@@ -74,12 +74,12 @@ public class CommonUtils {
      *
      * @return diff at given time and type
      */
-    public static int compareDateDiff(Date birthDate, Date compareDate, DateType dateType) {
+    public static long compareDateDiff(Date birthDate, Date compareDate, DateType dateType) {
         LocalDate birthLocalDate = getLocalDate(birthDate);
         LocalDate compareLocalDate = getLocalDate(compareDate);
         switch (dateType) {
             case DAY:
-                return Period.between(birthLocalDate, compareLocalDate).getDays();
+                return ChronoUnit.DAYS.between(birthLocalDate, compareLocalDate);
             case MONTH:
                 return Period.between(birthLocalDate, compareLocalDate).getMonths();
             case YEAR:
