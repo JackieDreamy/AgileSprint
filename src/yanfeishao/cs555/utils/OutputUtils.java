@@ -83,7 +83,7 @@ public class OutputUtils {
         return results;
     }
 
-    private void parseChild(List<PersonEntity> childList, Set<String> results, String prefix, SimpleDBUtils simpleDBUtils) {
+    private void parseChild(List<PersonEntity> childList, Set<String> results, String prefix, SimpleDBUtils simpleDBUtils, FamilyEntity familyEntity) {
         childList.forEach(child -> {
             switch (prefix) {
                 case ErrorCode.US29: {
@@ -99,26 +99,12 @@ public class OutputUtils {
                     }
                 }
                 break;
-                case ErrorCode.US36: {
-                    if (CommonUtils.isNotNull(child) && CommonUtils.isNotNull(child.getDeathDate())) {
-                        long days = CommonUtils.compareDateDiff(child.getDeathDate(), CommonUtils.getCurrentDate(), DateType.DAY);
-                        if (days >= 0 && days <= 30) {
-                            results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US36, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getDeathDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
-                        }
-                    }
-                }
-                break;
-                case ErrorCode.US38: {
-                    if (CommonUtils.isNotNull(child) && CommonUtils.isNotNull(child.getBirthDate()) && CommonUtils.compareWithCurrentDateDiff(child.getBirthDate(), CommonUtils.getCurrentDate()) <= 30) {
-                        results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US38, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(child.getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
-                    }
-                }
             }
         });
     }
 
     private void parseUS29Condition(FamilyEntity familyEntity, Set<String> results) {
-        parseChild(familyEntity.getChildList(), results, ErrorCode.US29, null);
+        parseChild(familyEntity.getChildList(), results, ErrorCode.US29, null, null);
         if (CommonUtils.isNotNull(familyEntity.getFather()) && CommonUtils.isNotNull(familyEntity.getFather().getDeathDate())) {
             results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US29, ErrorCode.US29, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getFather().getDeathDate())));
         }
@@ -161,44 +147,30 @@ public class OutputUtils {
         }
     }
 
-    private void parseUS35Condition(FamilyEntity familyEntity, Set<String> results) {
-        if (CommonUtils.isNotNull(familyEntity.getFather().getBirthDate())) {
-            long days = CommonUtils.compareDateDiff(familyEntity.getFather().getBirthDate(), CommonUtils.getCurrentDate(), DateType.DAY);
-            if (days <= 30) {
-                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US35, ErrorCode.US35, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getFather().getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), familyEntity.getIdentifier()));
-            } else if (CommonUtils.isNotNull(familyEntity.getMother().getBirthDate())) {
-                long day = CommonUtils.compareDateDiff(familyEntity.getMother().getBirthDate(), CommonUtils.getCurrentDate(), DateType.DAY);
-                if (day <= 30) {
-                    results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US35, ErrorCode.US35, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(familyEntity.getMother().getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), familyEntity.getIdentifier()));
-                }
+    private void parseUS35Condition(PersonEntity personEntity, Set<String> results) {
+        if (CommonUtils.isNotNull(personEntity.getBirthDate())) {
+            long days = CommonUtils.compareDateDiff(personEntity.getBirthDate(), CommonUtils.getCurrentDate(), DateType.DAY);
+            if (days >= 0 && days <= 30) {
+                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US35, ErrorCode.US35, personEntity.getIdentifier(), personEntity.getName(), CommonUtils.getFormattedDate(personEntity.getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
             }
         }
     }
 
-    private void parseUS36Condition(FamilyEntity familyEntity, Set<String> results) {
-        parseChild(familyEntity.getChildList(), results, ErrorCode.US36, null);
-        long days;
-        if (CommonUtils.isNotNull(familyEntity.getFather().getDeathDate())) {
-            days = CommonUtils.compareDateDiff(familyEntity.getFather().getDeathDate(), CommonUtils.getCurrentDate(), DateType.DAY);
+    private void parseUS36Condition(PersonEntity personEntity, Set<String> results) {
+        if (CommonUtils.isNotNull(personEntity.getDeathDate())) {
+            long days = CommonUtils.compareDateDiff(personEntity.getDeathDate(), CommonUtils.getCurrentDate(), DateType.DAY);
             if (days >= 0 && days <= 30) {
-                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US36, ErrorCode.US36, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getFather().getDeathDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
-            }
-        }
-        if (CommonUtils.isNotNull(familyEntity.getMother().getDeathDate())) {
-            days = CommonUtils.compareDateDiff(familyEntity.getMother().getDeathDate(), CommonUtils.getCurrentDate(), DateType.DAY);
-            if (days >= 0 && days <= 30) {
-                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US36, ErrorCode.US36, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(familyEntity.getMother().getDeathDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
+                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US36, ErrorCode.US36, personEntity.getIdentifier(), personEntity.getName(), CommonUtils.getFormattedDate(personEntity.getDeathDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
             }
         }
     }
 
-    private void parseUS38Condition(FamilyEntity familyEntity, Set<String> results) {
-        parseChild(familyEntity.getChildList(), results, ErrorCode.US38, null);
-        if (CommonUtils.isNotNull(familyEntity.getFather().getBirthDate()) && CommonUtils.compareWithCurrentDateDiff(familyEntity.getFather().getBirthDate(), CommonUtils.getCurrentDate()) <= 30) {
-            results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US38, ErrorCode.US38, familyEntity.getFather().getIdentifier(), familyEntity.getFather().getName(), CommonUtils.getFormattedDate(familyEntity.getFather().getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
-        }
-        if (CommonUtils.isNotNull(familyEntity.getMother().getBirthDate()) && CommonUtils.compareWithCurrentDateDiff(familyEntity.getMother().getBirthDate(), CommonUtils.getCurrentDate()) <= 30) {
-            results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US38, ErrorCode.US38, familyEntity.getMother().getIdentifier(), familyEntity.getMother().getName(), CommonUtils.getFormattedDate(familyEntity.getMother().getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
+    private void parseUS38Condition(PersonEntity personEntity, Set<String> results) {
+        if (!CommonUtils.isNotNull(personEntity.getDeathDate()) && CommonUtils.isNotNull(personEntity.getBirthDate())) {
+            long days = CommonUtils.compareWithCurrentDateDiff(personEntity.getBirthDate(), CommonUtils.getCurrentDate());
+            if (days >= 0 && days <= 30) {
+                results.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US38, ErrorCode.US38, personEntity.getIdentifier(), personEntity.getName(), CommonUtils.getFormattedDate(personEntity.getBirthDate()), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate())));
+            }
         }
     }
 
@@ -235,6 +207,24 @@ public class OutputUtils {
      */
     public Set<String> outputSpecialConditionResult(SimpleDBUtils simpleDBUtils, String prefix) {
         Set<String> results = new HashSet<>();
+        simpleDBUtils.getPersonDBList().forEach(personEntity -> {
+            if (CommonUtils.isNotNull(personEntity)) {
+                switch (prefix) {
+                    case ErrorCode.US35: {
+                        parseUS35Condition(personEntity, results);
+                    }
+                    break;
+                    case ErrorCode.US36: {
+                        parseUS36Condition(personEntity, results);
+                    }
+                    break;
+                    case ErrorCode.US38: {
+                        parseUS38Condition(personEntity, results);
+                    }
+                    break;
+                }
+            }
+        });
         simpleDBUtils.getFamilyDBList().forEach(familyEntity -> {
             switch (prefix) {
                 case ErrorCode.US29: {
@@ -246,7 +236,7 @@ public class OutputUtils {
                 }
                 break;
                 case ErrorCode.US31: {
-                    parseChild(familyEntity.getChildList(), results, ErrorCode.US31, simpleDBUtils);
+                    parseChild(familyEntity.getChildList(), results, ErrorCode.US31, simpleDBUtils, null);
                 }
                 break;
                 case ErrorCode.US33: {
@@ -257,21 +247,10 @@ public class OutputUtils {
                     parseUS34Condition(familyEntity, results, familyEntity.getMarriedDate());
                 }
                 break;
-                case ErrorCode.US35: {
-                    parseUS35Condition(familyEntity, results);
-                }
-                break;
-                case ErrorCode.US36: {
-                    parseUS36Condition(familyEntity, results);
-                }
-                break;
-                case ErrorCode.US38: {
-                    parseUS38Condition(familyEntity, results);
-                }
-                break;
                 case ErrorCode.US39: {
                     parseUS39Condition(familyEntity, results);
                 }
+                break;
             }
         });
         results.forEach((result -> LogUtils.info(result)));

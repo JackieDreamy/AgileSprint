@@ -83,15 +83,15 @@ public class ErrorInfo {
     /**
      * The constant US35.
      */
-    public static final String US35 = "Child [PersonId: %s Name: %s Birth Date: %s] was born in the last 30 days [Current Date: %s] in Family %s\n";
+    public static final String US35 = "The people [PersonId: %s Name: %s Birth Date: %s] was born in the last 30 days [Current Date: %s]\n";
     /**
      * The constant US36.
      */
-    public static final String US36 = "List all people in a GEDCOM file [PersonId: %s Name: %s Died on: %s] who died in the last 30 days [Current Date: %s]\n";
+    public static final String US36 = "The people [PersonId: %s Name: %s Death Date: %s] who died in the last 30 days [Current Date: %s]\n";
     /**
      * The constant US38.
      */
-    public static final String US38 = "List all people in a GEDCOM file [PersonId: %s Name: %s [Birth Date: %s] whose birthdays occur in the next 30 days [Current Date: %s]\n";
+    public static final String US38 = "The people [PersonId: %s Name: %s [Birth Date: %s] whose birthdays occur in the next 30 days [Current Date: %s]\n";
     /**
      * The constant US39.
      */

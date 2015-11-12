@@ -117,15 +117,6 @@ public class DateUtils {
                         }
                     }
                     break;
-                    case ErrorCode.US35: {
-                        if (CommonUtils.isNotNull(childBirthDate)) {
-                            long days = CommonUtils.compareDateDiff(childBirthDate, CommonUtils.getCurrentDate(), DateType.DAY);
-                            if (days <= 30) {
-                                result.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US35, prefix, child.getIdentifier(), child.getName(), CommonUtils.getFormattedDate(childBirthDate), CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), familyEntity.getIdentifier()));
-                            }
-                        }
-                    }
-                    break;
                 }
             }
         });
@@ -303,7 +294,7 @@ public class DateUtils {
     }
 
     /**
-     * Parse us 08, 09, 12，35 error.
+     * Parse us 08, 09, 12 error.
      *
      * @param result
      *         the result
@@ -312,7 +303,7 @@ public class DateUtils {
      * @param familyEntity
      *         the family entity
      */
-    public void parseUS08US09US12US35Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
+    public void parseUS08US09US12Error(Set<String> result, String prefix, FamilyEntity familyEntity) {
         parseChildDateError(result, familyEntity, prefix);
     }
 

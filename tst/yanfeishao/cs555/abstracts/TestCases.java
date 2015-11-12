@@ -17,15 +17,15 @@ public class TestCases {
     /**
      * The constant FAMILY_EXPECTED_SIZE.
      */
-    protected static final int FAMILY_EXPECTED_SIZE = 12;
+    protected static final int FAMILY_EXPECTED_SIZE = 13;
     /**
      * The constant PERSON_EXPECTED_SIZE.
      */
-    protected static final int PERSON_EXPECTED_SIZE = 28;
+    protected static final int PERSON_EXPECTED_SIZE = 30;
     /**
      * The constant US29_EXPECTED_SIZE.
      */
-    protected static final int US29_EXPECTED_SIZE = 18;
+    protected static final int US29_EXPECTED_SIZE = 19;
     /**
      * The constant US30_EXPECTED_SIZE.
      */

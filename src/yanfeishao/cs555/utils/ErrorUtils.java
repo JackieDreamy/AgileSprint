@@ -67,9 +67,8 @@ public class ErrorUtils {
                 break;
                 case ErrorCode.US08:
                 case ErrorCode.US09:
-                case ErrorCode.US12:
-                case ErrorCode.US35: {
-                    dateUtils.parseUS08US09US12US35Error(result, prefix, familyEntity);
+                case ErrorCode.US12: {
+                    dateUtils.parseUS08US09US12Error(result, prefix, familyEntity);
                 }
                 break;
             }

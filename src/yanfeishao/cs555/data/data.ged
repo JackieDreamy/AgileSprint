@@ -264,6 +264,22 @@
 2 DATE 10 DEC 1995
 2 PLAC West Sayville, Suffolk, New York, USA
 1 FAMS @F10@
+0 @P29@ INDI
+1 NAME Kenneth Bunny /Lindfors/
+1 SEX M
+1 BIRT
+2 DATE 12 NOV 1935
+2 PLAC Bronx, Bronx, New York, USA
+1 DEAT
+2 DATE 20 OCT 2015
+2 PLAC West Sayville, Suffolk, New York, USA
+0 @P30@ INDI
+1 NAME Kenneth Dreamy /Lindfors/
+1 SEX F
+1 BIRT
+2 DATE 1 DEC 1935
+2 PLAC Bronx, Bronx, New York, USA
+1 FAMS @F10@
 0 @F1@ FAM 
 1 HUSB @P1@
 1 WIFE @P4@
@@ -373,4 +389,7 @@
 1 CHIL @P19@
 2 _FREL Natural
 2 _MREL Natural
+0 @F13@ FAM
+1 HUSB @P29@
+1 WIFE @P30@
 0 TRLR

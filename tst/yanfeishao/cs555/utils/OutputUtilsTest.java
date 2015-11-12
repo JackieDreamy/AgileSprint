@@ -111,9 +111,10 @@ public class OutputUtilsTest extends TestCases {
 
     private Set<String> expectedUS35Result() {
         Set<String> expectedResult = new HashSet<>();
-        expectedResult.add(String.format(FormatterRegex.ERROR_PERSON + ErrorInfo.US35, ErrorCode.US35, "@P20@", "Elisabeth/Elsasser/", "Oct-30-2015", CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), "@F12@"));
+        expectedResult.add(String.format(FormatterRegex.INFO_PERSON + ErrorInfo.US35, ErrorCode.US35, "@P20@", "Elisabeth/Elsasser/", "Oct-30-2015", CommonUtils.getFormattedDate(CommonUtils.getCurrentDate()), "@F12@"));
         return expectedResult;
     }
+
     /**
     /**
      * Parse uS 01 case test.
@@ -304,7 +305,7 @@ public class OutputUtilsTest extends TestCases {
     public void parseUS35CaseTest() {
         SimpleDBUtils simpleDBUtils = parserUtils.readGEDCOM(FILE_PATH);
         Assert.assertNotNull(simpleDBUtils);
-        Assert.assertArrayEquals(expectedUS35Result().toArray(), outputUtils.outputError(simpleDBUtils, ErrorCode.US35).toArray());
+        Assert.assertArrayEquals(expectedUS35Result().toArray(), outputUtils.outputSpecialConditionResult(simpleDBUtils, ErrorCode.US35).toArray());
     }
 }
 
